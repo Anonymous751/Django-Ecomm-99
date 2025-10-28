@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All Products / ShopEase{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 mb-4">
+      {% include 'accounts/includes/sidebar.html' %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9 col-lg-10">
+      <!-- Header with Create Button -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">🛍️ Our Products</h2>
+          <p class="text-muted mb-0">Explore all categories and discover amazing items.</p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-primary fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#createProductModal">
+            <i class="bi bi-plus-circle me-1"></i> Create Product
+          </a>
+        </div>
+      </div>
+      <hr />
+
+      <!-- Create Product Modal -->
+      <div class="modal fade" id="createProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-header">
+              <h5 class="modal-title">Create New Product</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="modal-body">
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                  <div class="mb-3">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                      <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Sections -->
+      {% for category, products in categories.items %}
+      <div class="mb-5">
+        <h3 class="border-start border-4 border-primary ps-3 mb-4 text-capitalize">{{ category }}</h3>
+
+        <div class="row g-4">
+          {% for product in products %}
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm rounded-4 hover-shadow">
+              <!-- Product Image -->
+              <div class="card-img-container" style="height:220px; overflow:hidden; background-color:#f8f9fa;">
+                <img src="{{ product.images.url }}" alt="{{ product.name }}" class="card-img-top w-100 h-100" style="object-fit: contain; padding:10px;">
+              </div>
+
+              <!-- Product Info -->
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title text-truncate mb-2">{{ product.name }}</h5>
+                <p class="text-muted mb-2">₹{{ product.price|floatformat:2 }}</p>
+
+                {% if product.is_featured %}
+                  <span class="badge bg-success mb-2">Featured</span>
+                {% elif product.is_trending %}
+                  <span class="badge bg-warning text-dark mb-2">Trending</span>
+                {% endif %}
+
+                <a href="{% url 'stock_product_detail' product.pk %}" class="btn btn-outline-primary mt-auto mb-3 hover-btn">
+    <i class="bi bi-eye"></i> View Details
+</a>
+              </div>
+
+              <!-- Outline Update & Delete Buttons -->
+              <div class="d-flex justify-content-center gap-2 mb-3 px-3">
+                <a href="{% url 'update_stock_product' product.pk %}" class="btn btn-sm btn-outline-warning flex-fill hover-btn">
+    <i class="bi bi-pencil-square me-1"></i> Update
+</a>
+                <form method="POST" action="{% url 'delete_stock_product' product.pk %}" onsubmit="return confirm('Are you sure you want to delete this product?');" class="d-inline">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-sm btn-outline-danger flex-fill hover-btn">
+        <i class="bi bi-trash me-1"></i> Delete
+    </button>
+</form>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="col-12 text-center py-5">
+            <img src="{% static 'images/empty-orders.png' %}" width="150" class="mb-3">
+            <h5 class="text-muted">No products available in this category.</h5>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.hover-shadow:hover {
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15) !important;
+}
+
+.card-body h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-body p {
+  font-size: 0.9rem;
+}
+
+.btn-outline-primary,
+.btn-outline-warning,
+.btn-outline-danger {
+  font-weight: 500;
+  border-width: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+.hover-btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+  border-color: #ffc107;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+
+.card-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body .btn-sm {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.card-body .btn-warning i,
+.card-body .btn-danger i,
+.card-body .btn-primary i {
+  margin-right: 4px;
+}
+
+.sidebar-link.active {
+  background-color: #0d6efd;
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600;
+}
+</style>
+{% endblock %}

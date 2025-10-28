@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact | ShopEase{% endblock %}
+
+{% block extra_css %}
+<style>
+  .contact-section {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+  }
+  .contact-section h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+  <div class="container">
+    <h2>Contact Us</h2>
+
+    {% if success %}
+      <div class="alert alert-success text-center">
+        ✅ Your message has been sent successfully!
+      </div>
+    {% endif %}
+
+    <div class="form-container">
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="id_name" class="form-label">Name</label>
+          {{ form.name }}
+        </div>
+        <div class="mb-3">
+          <label for="id_email" class="form-label">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="mb-3">
+          <label for="id_message" class="form-label">Message</label>
+          {{ form.message }}
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100 py-2">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Dashboard / ShopEase{% endblock title %}
+
+{% block content %}
+<style>
+  /* 🌈 Dashboard Look */
+  body {
+    background: linear-gradient(135deg, #f4f9ff, #e6f0ff);
+  }
+
+  h2.fw-bold {
+    color: #083a4f;
+    font-weight: 700;
+  }
+
+  /* 🧩 Card Styling */
+  .card {
+    border-radius: 16px;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(8, 58, 79, 0.15);
+  }
+
+  /* 🖼 Card Image - Fixed Height */
+  .card-img-top {
+    width: 100%;
+    height: 200px; /* fixed height for uniform cards */
+    object-fit: cover;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  /* 🧭 Buttons */
+  .btn-primary {
+    background: linear-gradient(90deg, #083a4f, #0a607d);
+    border: none;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: #0a607d;
+  }
+
+  .btn-outline-primary {
+    border-color: #083a4f;
+    color: #083a4f;
+  }
+
+  .btn-outline-primary:hover {
+    background: #083a4f;
+    color: white;
+  }
+
+  /* 👤 Profile Avatar */
+  .profile-avatar {
+    border: 3px solid #083a4f;
+    padding: 2px;
+  }
+
+  /* ✨ Smooth Animation */
+  .container-fluid {
+    animation: fadeIn 0.8s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 🎨 Divider */
+  hr {
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #083a4f;
+    opacity: 0.3;
+  }
+
+  /* Align text */
+  .text-muted {
+    font-size: 0.9rem;
+  }
+
+  /* Equal card height on all screens */
+  .row.g-4 > div {
+    display: flex;
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+</style>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 mb-4">
+      {% include 'accounts/includes/sidebar.html' %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9 col-lg-10">
+      <!-- Header -->
+      <div class="row mb-4 text-center">
+        <div class="col-12">
+          <h2 class="fw-bold">Welcome, {{ request.user.username }} 👋</h2>
+          <p class="text-muted">
+            Manage your account, track orders, and explore analytics all in one place.
+          </p>
+          <hr />
+        </div>
+      </div>
+
+      <!-- Dashboard Cards -->
+      <div class="row g-4">
+        <!-- 👤 Profile Card -->
+        <div class="col-md-4 d-flex">
+          <div class="card shadow-sm text-center w-100">
+            
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <img
+                  src="{% if request.user.profile_image %}{{ request.user.profile_image.url }}{% else %}https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80{% endif %}"
+                  class="rounded-circle profile-avatar mb-3"
+                  width="100"
+                  height="100"
+                  alt="User Profile"
+                />
+                <h5 class="card-title">{{ request.user.username }}</h5>
+                <p class="text-muted">{{ request.user.email }}</p>
+              </div>
+              <div class="mt-3">
+                <a href="{% url 'profile' request.user.username %}" class="btn btn-primary btn-sm w-100">
+                  <i class="bi bi-person-lines-fill me-1"></i> View Profile
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🛒 Orders Card -->
+        <div class="col-md-4 d-flex">
+          <div class="card shadow-sm w-100">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
+              class="card-img-top"
+              alt="Orders Image"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">Orders</h5>
+              <p class="text-muted">Check your past and current orders, track shipments, and manage returns.</p>
+              <a href="#" class="btn btn-outline-primary btn-sm w-100 mt-auto">
+                <i class="bi bi-bag-check me-1"></i> View Orders
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⚙️ Account Settings Card -->
+        <div class="col-md-4 d-flex">
+          <div class="card shadow-sm w-100">
+            <img
+              src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=800&q=80"
+              class="card-img-top"
+              alt="Settings Image"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">Account Settings</h5>
+              <p class="text-muted">Update personal info, change password, or manage privacy preferences.</p>
+              <a href="#" class="btn btn-outline-primary btn-sm w-100 mt-auto">
+                <i class="bi bi-gear me-1"></i> Go to Settings
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Dashboard Cards -->
+    </div>
+  </div>
+</div>
+{% endblock content %}

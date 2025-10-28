@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Verify OTP{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card shadow border-0 rounded-4 p-4 text-center"
+       style="backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.85); max-width: 420px; width: 100%;">
+
+    <div class="text-center mb-3">
+      <i class="bi bi-shield-lock-fill" style="font-size: 3rem; color: #0a415aff;"></i>
+      <h3 class="fw-bold mt-2" style="color: #0a415aff;">Verify OTP</h3>
+      <p class="text-muted small mb-4">
+        Hi <strong>{{ username }}</strong>, enter the 6-digit code sent to your email.
+      </p>
+    </div>
+
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      <div class="mb-4">
+        <input 
+          type="text" 
+          name="otp" 
+          maxlength="6" 
+          pattern="\d{6}" 
+          required 
+          class="form-control text-center fs-4 fw-bold tracking-widest rounded-3 border-0 shadow-sm otp-input" 
+          placeholder="______">
+      </div>
+      <button type="submit" class="btn w-100 py-2 rounded-3 fw-semibold text-white verify-btn">
+        Verify
+      </button>
+    </form>
+
+    <p class="mt-3 text-muted small">
+      Didn’t get the code? <a href="#" class="fw-semibold text-decoration-none" style="color: #0a415aff;">Resend OTP</a>
+    </p>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  body {
+    background: linear-gradient(135deg, #f2f7f8 0%, #e9f2f3 100%);
+  }
+
+  .card {
+    transition: all 0.4s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .otp-input {
+    letter-spacing: 8px;
+    font-size: 1.6rem !important;
+    text-align: center;
+    background-color: #ffffffc7;
+  }
+
+  .otp-input:focus {
+    border: 1.5px solid #0a415aff;
+    box-shadow: 0 0 8px rgba(10, 65, 90, 0.3);
+    outline: none;
+  }
+
+  .verify-btn {
+    background: linear-gradient(135deg, #0a415aff, #176d8b);
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .verify-btn:hover {
+    background: linear-gradient(135deg, #176d8b, #0a415aff);
+    transform: scale(1.02);
+  }
+
+  .text-muted a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Verify OTP{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card shadow-lg border-0 p-4 rounded-4" style="max-width: 420px; width: 100%;">
+    <h4 class="text-center mb-3 fw-bold" style="color: #0a415aff;">Verify OTP</h4>
+    <p class="text-center text-muted mb-4">Enter the 6-digit code sent to your registered email address.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Enter OTP</label>
+        <input 
+          type="text" 
+          name="otp" 
+          class="form-control text-center fs-5 fw-bold rounded-3 border border-2" 
+          maxlength="6" 
+          required 
+          placeholder="------"
+          style="letter-spacing: 4px; border-color: #0a415aff;"
+        >
+      </div>
+      <button 
+        type="submit" 
+        class="btn w-100 fw-semibold text-white py-2"
+        style="background-color: #0a415aff; transition: 0.3s;"
+        onmouseover="this.style.backgroundColor='#08336f'"
+        onmouseout="this.style.backgroundColor='#0a415aff'"
+      >
+        Verify
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

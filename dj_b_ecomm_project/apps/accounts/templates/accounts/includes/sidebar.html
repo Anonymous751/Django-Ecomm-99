@@ -1,0 +1,98 @@
+<style>
+  /* 🌈 Modern Sidebar Styles */
+  .sidebar {
+    background: linear-gradient(180deg, #083a4f, #0a607d);
+    border-radius: 15px;
+    padding: 1rem;
+    color: white;
+    box-shadow: 0 8px 25px rgba(8, 58, 79, 0.2);
+  }
+
+  .sidebar .list-group-item {
+    background: transparent;
+    color: #e0f2ff;
+    border: none;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar .list-group-item i {
+    font-size: 1.1rem;
+    color: #00c6ff;
+    margin-right: 0.6rem;
+  }
+
+  /* ✨ Hover Effect */
+  .sidebar .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+    color: #fff;
+  }
+
+  /* 🌟 Active Link */
+  .sidebar .list-group-item.active {
+    background: #00c6ff !important;
+    color: #083a4f !important;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
+  }
+
+  .sidebar .list-group-item.active i {
+    color: #083a4f;
+  }
+
+  /* 🚪 Logout Link */
+  .sidebar .list-group-item.text-danger {
+    color: #ff6b6b;
+  }
+
+  .sidebar .list-group-item.text-danger:hover {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+  }
+
+  /* 📱 Responsive Padding */
+  @media (max-width: 768px) {
+    .sidebar {
+      border-radius: 0;
+      box-shadow: none;
+      background: #083a4f;
+    }
+  }
+</style>
+
+<div class="sidebar list-group mb-4 position-sticky" style="top: 1rem;">
+  <a href="{% url 'dashboard' %}" 
+     class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+      <i class="bi bi-speedometer2"></i> Dashboard
+  </a>
+
+  <a href="{% url 'my_orders' %}" 
+     class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'my_orders' %}active{% endif %}">
+      <i class="bi bi-bag-check"></i> Orders
+  </a>
+
+  <a href="{% url 'stock_products_list' %}" 
+     class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'stock_products_list' %}active{% endif %}">
+      <i class="bi bi-box-seam"></i> Products
+  </a>
+
+  <a href="{% url 'admin_settings' %}" 
+     class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'admin_settings' %}active{% endif %}">
+      <i class="bi bi-gear"></i> Settings
+  </a>
+
+  <a href="{% url 'profile' username=request.user.username %}" 
+     class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+      <i class="bi bi-person-circle"></i> My Profile
+  </a>
+
+  <a href="{% url 'logout' %}" 
+     class="list-group-item list-group-item-action text-danger">
+      <i class="bi bi-box-arrow-right"></i> Logout
+  </a>
+</div>

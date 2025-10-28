@@ -1,0 +1,411 @@
+{# templates/components/navbar.html #} {% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #083a4f;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">ShopEase</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            href="{% url 'home' %}"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+            href="{% url 'about' %}"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+            href="{% url 'contact' %}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+
+      <form
+        class="d-flex me-3"
+        role="search"
+        action="{% url 'home' %}"
+        method="get"
+      >
+        <input
+          class="form-control me-2 search-input"
+          type="search"
+          name="search"
+          placeholder="Search product by name & category..."
+          value="{{ search_query|default:'' }}"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <!-- Cart -->
+
+        <li class="nav-item me-3">
+          <a
+            class="nav-link position-relative"
+            href="#"
+            data-bs-toggle="modal"
+            data-bs-target="#cartModal"
+          >
+            <i class="fas fa-shopping-cart fa-lg"></i>
+            <span
+              id="cart-badge"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2"
+              style="font-size: 0.7rem"
+            >
+              {{ cart_count|default:0 }}
+              <span class="visually-hidden">unique items in cart</span>
+            </span>
+          </a>
+        </li>
+
+        <!-- Account -->
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            href="#"
+            id="accountDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="{% if request.user.profile_image %}{{ request.user.profile_image.url }}{% else %}{% static 'images/profile-placeholder.png' %}{% endif %}"
+              class="rounded-circle me-2"
+              width="30"
+              height="30"
+              alt="Profile"
+            />
+            {{ request.user.username }}
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="accountDropdown"
+          >
+            <li>
+              <a class="dropdown-item" href="{% url 'dashboard' %}"
+                >Dashboard</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="accountDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Account
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="accountDropdown"
+          >
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- 🛍️ Cart Modal -->
+{% include "components/cart_modal.html" %} {% block extra_css %}
+<style>
+  /* Make search input and button responsive in one row */
+  form.d-flex {
+    flex-wrap: nowrap; /* keep input and button in one row */
+    gap: 0.3rem;
+    width: 100%;
+  }
+
+  .search-input {
+    min-width: 0; /* prevent overflow */
+    max-width: 100%;
+  }
+
+  form.d-flex .btn {
+    flex-shrink: 0; /* keep button size consistent */
+    white-space: nowrap;
+  }
+
+  /* Make dropdown full width on mobile for easy tap */
+  @media (max-width: 991px) {
+    .navbar-nav .dropdown-menu {
+      width: 100%;
+      left: 0 !important;
+      right: 0 !important;
+      text-align: center;
+    }
+
+    /* Adjust search input + button for mobile nicely */
+    form.d-flex {
+      flex-wrap: nowrap;
+    }
+
+    .search-input {
+      font-size: 0.9rem;
+    }
+
+    form.d-flex .btn {
+      font-size: 0.9rem;
+      padding: 0.35rem 0.75rem;
+    }
+
+    /* Adjust cart badge position on mobile */
+    #cart-badge {
+      top: 0.25rem;
+      right: 0.25rem;
+      font-size: 0.65rem;
+    }
+  }
+
+  /* 🌊 Custom Navbar Background */
+  .custom-navbar {
+    background-color: #083a4f !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 🌟 Navbar Brand */
+  .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+  .navbar-brand:hover {
+    color: #ffc107 !important;
+  }
+
+  /* 🧭 Nav Links */
+  .nav-link {
+    color: #e0e0e0 !important;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: #ffc107 !important;
+    transform: translateY(-1px);
+  }
+
+  /* 🔍 Search Box */
+  .search-input {
+    background-color: #0b4b64;
+    color: white;
+    border: 1px solid #0b4b64;
+  }
+  .search-input::placeholder {
+    color: #cfd8dc;
+  }
+  .search-input:focus {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    border-color: #ffc107;
+  }
+
+  /* 🔽 Dropdown */
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  .dropdown-item:hover {
+    background-color: #083a4f;
+    color: white;
+  }
+
+  /* 🛒 Cart Icon */
+  .fas.fa-shopping-cart {
+    color: white;
+  }
+
+  /* 📱 Responsive */
+  @media (max-width: 991px) {
+    .navbar-nav .dropdown-menu {
+      width: 100%;
+      text-align: center;
+    }
+    .navbar .nav-link {
+      padding: 0.6rem 1rem;
+    }
+  }
+</style>
+{% endblock %} {% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cartBadge = document.getElementById("cart-badge");
+    const cartTotalElem = document.getElementById("cart-total");
+    const cartItemsContainer = document.getElementById("cart-items-container");
+
+    // Function to show top message
+    let alertTimeout;
+    function showMessage(msg, type = "success") {
+      // Remove any existing alert
+      const existingAlert = document.querySelector(".custom-alert");
+      if (existingAlert) existingAlert.remove();
+      clearTimeout(alertTimeout);
+
+      const alertBox = document.createElement("div");
+      alertBox.className = `custom-alert alert alert-${type} text-center py-2 position-fixed top-0 start-50 translate-middle-x shadow`;
+      alertBox.style.zIndex = "2000";
+      alertBox.style.minWidth = "200px";
+      alertBox.innerHTML = msg;
+      document.body.appendChild(alertBox);
+
+      // Fade in
+      alertBox.style.opacity = 0;
+      alertBox.style.transition = "opacity 0.3s";
+      requestAnimationFrame(() => {
+        alertBox.style.opacity = 1;
+      });
+
+      // Fade out after 2s
+      alertTimeout = setTimeout(() => {
+        alertBox.style.opacity = 0;
+        setTimeout(() => alertBox.remove(), 300);
+      }, 2000);
+    }
+
+    function updateItemInDOM(updatedItem) {
+      const itemDiv = document.querySelector(
+        `[data-cart-item-id='${updatedItem.id}']`
+      );
+      if (!itemDiv) return;
+      itemDiv.querySelector(".quantity").textContent = updatedItem.quantity;
+      itemDiv.querySelector(".item-total").textContent =
+        updatedItem.total_price.toFixed(2);
+      if (updatedItem.quantity <= 0) itemDiv.remove();
+    }
+
+    function attachQuantityButtons() {
+      document
+        .querySelectorAll(".increase-btn, .decrease-btn")
+        .forEach((btn) => {
+          btn.onclick = () => {
+            const itemDiv = btn.closest("[data-cart-item-id]");
+            const itemId = itemDiv.dataset.cartItemId;
+            const action = btn.classList.contains("increase-btn")
+              ? "increase"
+              : "decrease";
+
+            fetch("{% url 'update_cart_item' %}", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}",
+              },
+              body: `item_id=${itemId}&action=${action}`,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.success) {
+                  const updatedItem = data.cart_items.find(
+                    (i) => i.id == itemId
+                  );
+                  if (updatedItem) updateItemInDOM(updatedItem);
+                  else
+                    document
+                      .querySelector(`[data-cart-item-id='${itemId}']`)
+                      ?.remove();
+
+                  cartBadge.textContent = data.cart_count;
+                  cartTotalElem.textContent = `₹${data.cart_total.toFixed(2)}`;
+
+                  if (data.message) showMessage(data.message);
+                }
+              });
+          };
+        });
+    }
+
+    attachQuantityButtons();
+
+    // Handle Add to Cart
+    document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+      btn.onclick = () => {
+        const productId = btn.dataset.productId;
+
+        fetch(`shop/add-to-cart/?product_id=${productId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              cartBadge.textContent = data.cart_count;
+              cartTotalElem.textContent = `₹${data.cart_total.toFixed(2)}`;
+
+              const existingItem = document.querySelector(
+                `[data-cart-item-id='${data.new_item.id}']`
+              );
+              if (existingItem) {
+                existingItem.querySelector(".quantity").textContent =
+                  data.new_item.quantity;
+                existingItem.querySelector(".item-total").textContent =
+                  data.new_item.total_price.toFixed(2);
+              } else {
+                cartItemsContainer.insertAdjacentHTML(
+                  "beforeend",
+                  `
+                <div class="d-flex align-items-center mb-3 border-bottom pb-2" data-cart-item-id="${
+                  data.new_item.id
+                }">
+                  <img src="${
+                    data.new_item.image
+                  }" class="me-3 rounded" width="60" alt="${
+                    data.new_item.name
+                  }">
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">${data.new_item.name}</h6>
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-sm btn-outline-secondary me-2 decrease-btn">−</button>
+                      <span class="quantity">${data.new_item.quantity}</span>
+                      <button class="btn btn-sm btn-outline-secondary ms-2 increase-btn">+</button>
+                      <small class="text-muted ms-3">Price: ₹<span class="item-total">${data.new_item.total_price.toFixed(
+                        2
+                      )}</span></small>
+                    </div>
+                  </div>
+                </div>`
+                );
+                attachQuantityButtons();
+              }
+
+              showMessage("Item added to cart!");
+            } else {
+              showMessage("Please Login to add items.", "danger");
+            }
+          })
+          .catch((err) => showMessage("Error adding items.", "danger"));
+      };
+    });
+  });
+</script>
+{% endblock %}

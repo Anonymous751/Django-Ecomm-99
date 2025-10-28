@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home | ShopEase{% endblock %}
+
+{% block extra_css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
+<style>
+/* ==== HERO SECTION ==== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background video */
+.hero video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* Overlay for text contrast */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.62);
+  z-index: 1;
+}
+
+/* Text content */
+.hero .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero .btn {
+  background-color: #fff;
+  color: #083a4f;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #083a4f;
+  color: #fff;
+}
+
+/* Responsive hero */
+@media (max-width: 768px) {
+  .hero {
+    height: 320px;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* ==== PRODUCT CARDS ==== */
+.swiper-slide .card {
+  border: none;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.swiper-slide .card:hover {
+  transform: scale(1.05);
+}
+.swiper-slide img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* ==== SECTION HEADINGS ==== */
+.products h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #083a4f, #00a8b5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+
+.products h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #00a8b5, #083a4f);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.products h2:hover::after {
+  width: 100%;
+}
+
+/* Responsive heading size */
+@media (max-width: 768px) {
+  .products h2 {
+    font-size: 1.5rem;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- ==== HERO SECTION ==== -->
+<section class="hero mb-5">
+  <video autoplay muted loop playsinline>
+    <source src="{% static 'images/banner_video.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="container">
+    <h1>Welcome to ShopEase</h1>
+    <p>Discover amazing products at unbeatable prices!</p>
+    <a href="#" class="btn btn-light btn-lg mt-3">Shop Now</a>
+  </div>
+</section>
+
+<!-- ==== FEATURED PRODUCTS ==== -->
+<section class="products mb-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <h2 class="mb-0">Featured Products</h2>
+      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+          <option value="">All</option>
+          {% for key, value in products.model.CATEGORY_CHOICES %}
+          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
+            {{ value }}
+          </option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+    {% include "components/swiper_slider.html" with products=featured_products swiper_class="featured-swiper" %}
+  </div>
+</section>
+
+<!-- ==== TRENDING PRODUCTS ==== -->
+<section class="products mb-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <h2 class="mb-0">Trending Products</h2>
+      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+          <option value="">All</option>
+          {% for key, value in products.model.CATEGORY_CHOICES %}
+          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
+            {{ value }}
+          </option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+    {% include "components/swiper_slider.html" with products=trending_products swiper_class="trending-swiper" %}
+  </div>
+</section>
+
+<!-- ==== NEW COMERS ==== -->
+<section class="products mb-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <h2 class="mb-0">New Comers</h2>
+      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+          <option value="">All</option>
+          {% for key, value in products.model.CATEGORY_CHOICES %}
+          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
+            {{ value }}
+          </option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+    {% include "components/swiper_slider.html" with products=new_comers swiper_class="new-swiper" %}
+  </div>
+</section>
+
+{% include "components/cart_modal.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+const swiperOptions = {
+  slidesPerView: 4,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: { delay: 2500, disableOnInteraction: false },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    576: { slidesPerView: 2 },
+    768: { slidesPerView: 3 },
+    992: { slidesPerView: 4 },
+  },
+};
+new Swiper('.featured-swiper', swiperOptions);
+new Swiper('.trending-swiper', swiperOptions);
+new Swiper('.new-swiper', swiperOptions);
+</script>
+{% endblock %}

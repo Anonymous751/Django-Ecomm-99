@@ -1,0 +1,73 @@
+{# components/product_card.html #}
+<div class="card text-center h-100">
+  <div class="card-img-container" style="height: 200px; overflow: hidden;">
+    <img
+      src="{{ product.images.url }}"
+      class="card-img-top w-100 h-100"
+      alt="{{ product.name }}"
+      style="object-fit: contain;"
+    />
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">₹{{ product.price }}</p>
+    <button
+      class="btn btn-primary add-to-cart-btn"
+      data-product-id="{{ product.id }}"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+
+{% block extra_css %}
+
+<style>
+  /* 🎨 Stylish Add to Cart Button */
+  .add-to-cart-btn {
+    background: linear-gradient(135deg, #083a4f, #00a8b5);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(8, 58, 79, 0.25);
+  }
+
+  .add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #00a8b5, #083a4f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 58, 79, 0.4);
+  }
+
+  .add-to-cart-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 3px 8px rgba(8, 58, 79, 0.3);
+  }
+
+  .add-to-cart-btn i {
+    font-size: 1rem;
+  }
+
+  /* 🌟 Subtle Glow Animation on Hover */
+  .add-to-cart-btn:hover {
+    animation: pulseGlow 1s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    from {
+      box-shadow: 0 0 8px rgba(0, 168, 181, 0.4);
+    }
+    to {
+      box-shadow: 0 0 16px rgba(0, 168, 181, 0.7);
+    }
+  }
+</style>
+{% endblock  %}
