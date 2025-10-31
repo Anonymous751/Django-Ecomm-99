@@ -4,6 +4,7 @@ from apps.shop.models import Product
 from apps.cart.models import CartItem
 
 
+
 def home_view(request):
     selected_category = request.GET.get('category')
     search_query = request.GET.get('search')
@@ -11,18 +12,18 @@ def home_view(request):
     # Start with all products
     products = Product.objects.all()
 
-    # Filter by category if selected
+    # Filter by category
     if selected_category:
         products = products.filter(category=selected_category)
 
-    # Filter by search query if present
+    # Filter by search query
     if search_query:
         products = products.filter(name__icontains=search_query)
 
     # Group products for sliders
     featured_products = products.filter(is_featured=True)
     trending_products = products.filter(is_trending=True)
-    new_comers = products.order_by('-created_at')[:10]  # latest 10 products
+    new_comers = products.order_by('-created_at')[:10]
 
     # Cart info
     if request.user.is_authenticated:
@@ -40,11 +41,13 @@ def home_view(request):
         'new_comers': new_comers,
         'selected_category': selected_category,
         'search_query': search_query,
-        'products': Product,  # for CATEGORY_CHOICES in template
+        'products': products,  # ✅ fixed
+        'Product': Product,    # for CATEGORY_CHOICES if needed
         'cart_items': cart_items,
         'cart_total': cart_total,
         'cart_count': cart_count,
     }
+
     return render(request, 'home.html', context)
 
 

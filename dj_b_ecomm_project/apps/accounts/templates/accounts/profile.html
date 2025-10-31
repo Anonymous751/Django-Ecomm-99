@@ -74,11 +74,13 @@
           <form method="get" id="userSelectForm">
             <div class="input-group">
               <select id="userSelect" class="form-select">
-                <option value="">-- Select User --</option>
-                {% for u in all_users %}
-                  <option value="{% url 'profile' username=u.username %}">{{ u.username }}</option>
-                {% endfor %}
-              </select>
+  <option value="">-- Select User --</option>
+  {% for u in all_users %}
+    {% if u.username %}
+      <option value="{% url 'accounts:profile' username=u.username %}">{{ u.username }}</option>
+    {% endif %}
+  {% endfor %}
+</select>
               <button type="button" class="btn btn-primary" onclick="redirectToProfile()">
                 <i class="bi bi-eye"></i> View
               </button>

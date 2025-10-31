@@ -1,7 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
+
+# Allow Unicode letters, numbers, and special characters
+unicode_username_validator = RegexValidator(
+    regex=r'^[\w.@+\-_\u00C0-\uFFFF]+$',
+    message="Enter a valid username. Unicode letters, numbers, and @/./+/-/_ characters only."
+)
+
 
 class CustomUser(AbstractUser):
+    username = models.CharField(
+        max_length=150,
+        unique=True,
+        validators=[unicode_username_validator],
+    )
+    display_name = models.CharField(max_length=150, blank=True, null=True)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     is_private = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
@@ -18,13 +32,22 @@ class CustomUser(AbstractUser):
         ordering = ['username']
 
     def __str__(self):
-        return self.username
+        return self.display_name or self.username or "Unnamed User"
 
     @property
     def profile_status(self):
         return "Private" if self.is_private else "Public"
 
+
 class Block(models.Model):
     blocker = models.ForeignKey(CustomUser, related_name='blocking', on_delete=models.CASCADE)
     blocked = models.ForeignKey(CustomUser, related_name='blocked_by', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Block"
+        verbose_name_plural = "Blocks"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.blocker} blocked {self.blocked}"

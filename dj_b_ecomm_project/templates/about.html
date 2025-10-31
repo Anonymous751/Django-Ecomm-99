@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}About | ShopEase{% endblock %}
+{% block title %}{% trans "About" %} | ShopEase{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -30,13 +30,11 @@
 {% block content %}
 <section class="about-section">
   <div class="container">
-    <h1>About ShopEase</h1>
+    <h1>{% trans "About ShopEase" %}</h1>
     <p>
-      Welcome to <strong>ShopEase</strong> — your one-stop destination for smart, easy, and enjoyable online shopping!
-      <br><br>
-      We aim to bring you the best deals, top-quality products, and a seamless shopping experience from the comfort of your home.
-      <br><br>
-      Built with ❤️ using Django and Bootstrap.
+      {% blocktrans trimmed %}
+Welcome to <strong>ShopEase</strong> — your one-stop destination for smart, easy, and enjoyable online shopping!<br><br> We aim to bring you the best deals, top-quality products, and a seamless shopping experience from the comfort of your home.<br><br> Built with ❤️ using Django and Bootstrap.
+      {% endblocktrans %}
     </p>
   </div>
 </section>

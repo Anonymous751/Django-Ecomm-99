@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}My Orders / ShopEase{% endblock %}
+{% block title %}{% trans "My Orders / ShopEase" %}{% endblock %}
 
 {% block content %}
 <div class="container-fluid mt-4">
@@ -16,8 +17,8 @@
     <div class="col-md-9 col-lg-10">
       <div class="row mb-4 text-center">
         <div class="col-12">
-          <h2 class="fw-bold">🛍️ My Orders</h2>
-          <p class="text-muted">View all your past and recent purchases in one place.</p>
+          <h2 class="fw-bold">🛍️ {% trans "My Orders" %}</h2>
+          <p class="text-muted">{% trans "View all your past and recent purchases in one place." %}</p>
           <hr />
         </div>
       </div>
@@ -45,13 +46,13 @@
                     <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
                       <div class="card-header d-flex justify-content-between align-items-center bg-light">
                         <div>
-                          <span class="fw-bold">Order #{{ order.id }}</span>
+                          <span class="fw-bold">{% trans "Order" %} #{{ order.id }}</span>
                           <small class="text-muted ms-2">{{ order.created_at|date:"M d, Y — h:i A" }}</small>
                         </div>
                         <select class="form-select form-select-sm w-auto" onchange="changeStatus({{ order.id }}, this)">
-                          <option value="pending" {% if order.status == "pending" %}selected{% endif %}>Pending</option>
-                          <option value="delivered" {% if order.status == "delivered" %}selected{% endif %}>Delivered</option>
-                          <option value="cancelled" {% if order.status == "cancelled" %}selected{% endif %}>Cancelled</option>
+                          <option value="pending" {% if order.status == "pending" %}selected{% endif %}>{% trans "Pending" %}</option>
+                          <option value="delivered" {% if order.status == "delivered" %}selected{% endif %}>{% trans "Delivered" %}</option>
+                          <option value="cancelled" {% if order.status == "cancelled" %}selected{% endif %}>{% trans "Cancelled" %}</option>
                         </select>
                       </div>
 
@@ -71,7 +72,7 @@
                                   <h6 class="card-title mb-1 text-truncate" title="{{ item.product.name|default:'Unknown Product' }}">{{ item.product.name|default:"Unknown Product" }}</h6>
                                   <p class="text-muted mb-2">{{ item.product.description|truncatewords:10 }}</p>
                                   <div class="d-flex justify-content-between align-items-center">
-                                    <span>Qty: <strong>{{ item.quantity }}</strong></span>
+                                    <span>{% trans "Qty" %}: <strong>{{ item.quantity }}</strong></span>
                                     <span class="fw-bold text-success">₹{{ item.product.price|floatformat:2 }}</span>
                                   </div>
                                 </div>
@@ -83,19 +84,27 @@
                         <!-- Buttons -->
                         <div class="mt-3 d-flex justify-content-center flex-wrap gap-2">
                           <button class="btn btn-outline-primary" onclick="viewProduct({{ order.id }})">
-                            <i class="bi bi-eye"></i> View Products
+                            <i class="bi bi-eye"></i> {% trans "View Products" %}
                           </button>
-                          <a href="{% url 'update_ordered_product_view' order.items.first.product.id %}" class="btn btn-outline-warning">
-                            <i class="bi bi-pencil-square"></i> Update Ordered Product
-                          </a>
+                          {% with first_item=order.items.first %}
+                            {% if first_item and first_item.product %}
+                              <a href="{% url 'update_ordered_product_view' first_item.product.id %}" class="btn btn-outline-warning">
+                                <i class="bi bi-pencil-square"></i> {% trans "Update Ordered Product" %}
+                              </a>
+                            {% else %}
+                              <button class="btn btn-outline-warning" disabled>
+                                <i class="bi bi-pencil-square"></i> {% trans "Update Ordered Product" %}
+                              </button>
+                            {% endif %}
+                          {% endwith %}
                           <button class="btn btn-outline-danger" onclick="deleteOrder({{ order.id }})">
-                            <i class="bi bi-trash"></i> Delete Order
+                            <i class="bi bi-trash"></i> {% trans "Delete Order" %}
                           </button>
                         </div>
 
                         <!-- Order Total -->
                         <div class="d-flex justify-content-end align-items-center mt-3">
-                          <h5 class="text-dark mb-0">Order Total: <span class="text-success">₹{{ order.total_amount|floatformat:2 }}</span></h5>
+                          <h5 class="text-dark mb-0">{% trans "Order Total" %}: <span class="text-success">₹{{ order.total_amount|floatformat:2 }}</span></h5>
                         </div>
                       </div>
                     </div>
@@ -103,8 +112,8 @@
                 {% endfor %}
               {% else %}
                 <div class="col-12 text-center py-5 no-orders">
-                  <img src="{% static 'images/empty-orders.png' %}" alt="No Orders" width="150" class="mb-3">
-                  <h5 class="text-muted">No orders found.</h5>
+                  <img src="{% static 'images/empty-orders.png' %}" alt="{% trans 'No Orders' %}" width="150" class="mb-3">
+                  <h5 class="text-muted">{% trans "No orders found." %}</h5>
                 </div>
               {% endif %}
             </div>
@@ -119,8 +128,8 @@
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
   <div id="statusToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
-      <div class="toast-body" id="toastMessage">Action completed successfully!</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <div class="toast-body" id="toastMessage">{% trans "Action completed successfully!" %}</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{% trans 'Close' %}"></button>
     </div>
   </div>
 </div>
@@ -130,14 +139,16 @@
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header">
-        <h5 class="modal-title" id="productModalLabel">Products</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="productModalLabel">{% trans "Products" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
       </div>
       <div class="modal-body" id="productModalBody" style="max-height:70vh; overflow-y:auto;"></div>
     </div>
   </div>
 </div>
+{% endblock %}
 
+{% block extra_js  %}
 <script>
 /* ====================== Helpers ====================== */
 function showToast(msg, type='success'){
@@ -275,7 +286,9 @@ function viewProduct(orderId){
     });
 }
 </script>
+{% endblock  %}
 
+{% block extra_css %}
 <style>
 .hover-shadow:hover { transform: translateY(-5px); transition: all 0.3s ease; box-shadow: 0 15px 25px rgba(0,0,0,0.2) !important; }
 .card-body h6 { font-size: 0.95rem; }

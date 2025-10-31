@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Contact | ShopEase{% endblock %}
 
@@ -28,11 +29,11 @@
 {% block content %}
 <section class="contact-section">
   <div class="container">
-    <h2>Contact Us</h2>
+    <h2>{% trans "Contact Us" %}</h2>
 
     {% if success %}
       <div class="alert alert-success text-center">
-        ✅ Your message has been sent successfully!
+        ✅ {% trans "Your message has been sent successfully!" %}
       </div>
     {% endif %}
 
@@ -40,20 +41,20 @@
       <form method="POST" novalidate>
         {% csrf_token %}
         <div class="mb-3">
-          <label for="id_name" class="form-label">Name</label>
+          <label for="id_name" class="form-label">{% trans "Name" %}</label>
           {{ form.name }}
         </div>
         <div class="mb-3">
-          <label for="id_email" class="form-label">Email</label>
+          <label for="id_email" class="form-label">{% trans "Email" %}</label>
           {{ form.email }}
         </div>
         <div class="mb-3">
-          <label for="id_message" class="form-label">Message</label>
+          <label for="id_message" class="form-label">{% trans "Message" %}</label>
           {{ form.message }}
         </div>
 
         <button type="submit" class="btn btn-dark w-100 py-2">
-          Send Message
+          {% trans "Send Message" %}
         </button>
       </form>
     </div>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}Home | ShopEase{% endblock %}
 
 {% block extra_css %}
@@ -152,9 +153,9 @@
   </video>
 
   <div class="container">
-    <h1>Welcome to ShopEase</h1>
-    <p>Discover amazing products at unbeatable prices!</p>
-    <a href="#" class="btn btn-light btn-lg mt-3">Shop Now</a>
+    <h1>{% trans "Welcome to ShopEase" %}</h1>
+    <p>{% trans "Discover amazing products at unbeatable prices!" %}</p>
+    <a href="#" class="btn btn-light btn-lg mt-3">{% trans "Shop Now" %}</a>
   </div>
 </section>
 
@@ -162,11 +163,11 @@
 <section class="products mb-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-      <h2 class="mb-0">Featured Products</h2>
+      <h2 class="mb-0">{% trans "Featured Products" %}</h2>
       <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
         <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
-          <option value="">All</option>
+          <option value="">{% trans "All" %}</option>
           {% for key, value in products.model.CATEGORY_CHOICES %}
           <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
             {{ value }}
@@ -183,11 +184,11 @@
 <section class="products mb-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-      <h2 class="mb-0">Trending Products</h2>
+      <h2 class="mb-0">{% trans "Trending Products" %}</h2>
       <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
         <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
-          <option value="">All</option>
+          <option value="">{% trans "All" %}</option>
           {% for key, value in products.model.CATEGORY_CHOICES %}
           <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
             {{ value }}
@@ -204,11 +205,11 @@
 <section class="products mb-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-      <h2 class="mb-0">New Comers</h2>
+      <h2 class="mb-0">{% trans "New Comers" %}</h2>
       <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">Filter by Category:</label>
+        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
         <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
-          <option value="">All</option>
+          <option value="">{% trans "All" %}</option>
           {% for key, value in products.model.CATEGORY_CHOICES %}
           <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
             {{ value }}

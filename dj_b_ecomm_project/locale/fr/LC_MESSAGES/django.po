@@ -1,0 +1,775 @@
+# French translations for Django-Bootstrap-EComm project.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Kamanpreet Singh <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Django-Bootstrap-EComm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-31 15:46+0530\n"
+"PO-Revision-Date: 2025-10-30 10:30+0530\n"
+"Last-Translator: Kamanpreet Singh <EMAIL@ADDRESS>\n"
+"Language-Team: French <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/accounts/forms.py:23 apps/accounts/forms.py:39
+#: apps/accounts/forms.py:82
+#: apps/accounts/templates/accounts/admin_settings.html:68
+#: apps/core/forms.py:15 templates/contact.html:48
+msgid "Email"
+msgstr "E-mail"
+
+#: apps/accounts/forms.py:24
+msgid "Enter a valid email address."
+msgstr "Entrez une adresse e-mail valide."
+
+#: apps/accounts/forms.py:30 apps/accounts/forms.py:42
+#: apps/accounts/templates/accounts/admin_settings.html:43
+msgid "Profile Image"
+msgstr "Image de profil"
+
+#: apps/accounts/forms.py:31
+msgid "Optional: Upload a profile image."
+msgstr "Facultatif : Téléchargez une image de profil."
+
+#: apps/accounts/forms.py:38
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
+#: apps/accounts/forms.py:40 apps/accounts/forms.py:87
+msgid "Password"
+msgstr "le mot de passe"
+
+#: apps/accounts/forms.py:41
+#, fuzzy
+#| msgid "Confirm New Password"
+msgid "Confirm Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: apps/accounts/forms.py:45
+msgid "Choose a unique username."
+msgstr "Choisissez un nom d'utilisateur unique."
+
+#: apps/accounts/forms.py:46
+msgid "Your password must contain at least 8 characters."
+msgstr "Votre mot de passe doit contenir au moins 8 caractères."
+
+#: apps/accounts/forms.py:47
+msgid "Enter the same password again for confirmation."
+msgstr "Saisissez à nouveau le même mot de passe pour confirmation."
+
+#: apps/accounts/forms.py:51
+#, fuzzy
+#| msgid "Enter your current password"
+msgid "Enter your password"
+msgstr "Entrez votre mot de passe actuel"
+
+#: apps/accounts/forms.py:52
+#, fuzzy
+#| msgid "Confirm new password"
+msgid "Confirm your password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:6
+msgid "Settings / ShopEase"
+msgstr "Paramètres / ShopEase"
+
+#: apps/accounts/templates/accounts/admin_settings.html:20
+#: apps/accounts/templates/accounts/includes/sidebar.html:88
+msgid "Settings"
+msgstr "Paramètres"
+
+#: apps/accounts/templates/accounts/admin_settings.html:24
+#: templates/footer.html:100 templates/navbar.html:100
+msgid "Profile"
+msgstr "Profil"
+
+#: apps/accounts/templates/accounts/admin_settings.html:25
+#: apps/accounts/templates/accounts/admin_settings.html:101
+msgid "Account Preferences"
+msgstr "Préférences de compte"
+
+#: apps/accounts/templates/accounts/admin_settings.html:26
+#: apps/accounts/templates/accounts/admin_settings.html:149
+msgid "Privacy & Security"
+msgstr "Confidentialité et sécurité"
+
+#: apps/accounts/templates/accounts/admin_settings.html:27
+#: apps/accounts/templates/accounts/admin_settings.html:219
+msgid "App Settings"
+msgstr "Paramètres de l'application"
+
+#: apps/accounts/templates/accounts/admin_settings.html:35
+msgid "Profile Settings"
+msgstr "Paramètres du profil"
+
+#: apps/accounts/templates/accounts/admin_settings.html:45
+msgid "Default Profile"
+msgstr "Profil par défaut"
+
+#: apps/accounts/templates/accounts/admin_settings.html:50
+msgid "Change Photo"
+msgstr "Changer de photo"
+
+#: apps/accounts/templates/accounts/admin_settings.html:58
+msgid "First Name"
+msgstr "Prénom"
+
+#: apps/accounts/templates/accounts/admin_settings.html:62
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: apps/accounts/templates/accounts/admin_settings.html:74
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:76
+msgid "Current Password"
+msgstr "Mot de passe actuel"
+
+#: apps/accounts/templates/accounts/admin_settings.html:77
+msgid "Enter your current password"
+msgstr "Entrez votre mot de passe actuel"
+
+#: apps/accounts/templates/accounts/admin_settings.html:81
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:82
+msgid "Enter new password"
+msgstr "Entrez le nouveau mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:86
+msgid "Confirm New Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:87
+msgid "Confirm new password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: apps/accounts/templates/accounts/admin_settings.html:93
+#: apps/accounts/templates/accounts/admin_settings.html:126
+#: apps/accounts/templates/accounts/admin_settings.html:237
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: apps/accounts/templates/accounts/admin_settings.html:109
+msgid "Language"
+msgstr "Langue"
+
+#: apps/accounts/templates/accounts/admin_settings.html:135
+msgid "Timezone"
+msgstr "Fuseau horaire"
+
+#: apps/accounts/templates/accounts/admin_settings.html:159
+msgid "Two-Factor Authentication (2FA)"
+msgstr "Authentification à deux facteurs (2FA)"
+
+#: apps/accounts/templates/accounts/admin_settings.html:161
+msgid "Add an extra layer of security to your account."
+msgstr "Ajoutez une couche de sécurité supplémentaire à votre compte."
+
+#: apps/accounts/templates/accounts/admin_settings.html:166
+msgid "Disable 2FA"
+msgstr "Désactiver 2FA"
+
+#: apps/accounts/templates/accounts/admin_settings.html:170
+msgid "Enable 2FA"
+msgstr "Activer 2FA"
+
+#: apps/accounts/templates/accounts/admin_settings.html:179
+msgid "Manage Blocked Users"
+msgstr "Gérer les utilisateurs bloqués"
+
+#: apps/accounts/templates/accounts/admin_settings.html:183
+msgid "-- Choose a User --"
+msgstr "-- Choisissez un utilisateur --"
+
+#: apps/accounts/templates/accounts/admin_settings.html:189
+msgid "Block"
+msgstr "Bloc"
+
+#: apps/accounts/templates/accounts/admin_settings.html:192
+msgid "Unblock"
+msgstr "Débloquer"
+
+#: apps/accounts/templates/accounts/admin_settings.html:200
+msgid "Privacy Settings"
+msgstr "Paramètres de confidentialité"
+
+#: apps/accounts/templates/accounts/admin_settings.html:205
+msgid "Make my account private"
+msgstr "Rendre mon compte privé"
+
+#: apps/accounts/templates/accounts/admin_settings.html:210
+msgid "Make Account Private"
+msgstr "Rendre le compte privé"
+
+#: apps/accounts/templates/accounts/admin_settings.html:224
+msgid "Dark Mode"
+msgstr "Mode sombre"
+
+#: apps/accounts/templates/accounts/admin_settings.html:227
+msgid "Dashboard Analytics"
+msgstr "Analyse du tableau de bord"
+
+#: apps/accounts/templates/accounts/admin_settings.html:229
+msgid "Basic"
+msgstr "Basique"
+
+#: apps/accounts/templates/accounts/admin_settings.html:230
+msgid "Advanced"
+msgstr "Avancé"
+
+#: apps/accounts/templates/accounts/admin_settings.html:231
+msgid "Professional"
+msgstr "Professionnel"
+
+#: apps/accounts/templates/accounts/dashboard.html:126
+msgid "Welcome,"
+msgstr "Accueillir,"
+
+#: apps/accounts/templates/accounts/dashboard.html:129
+msgid ""
+"Manage your account, track orders, and explore analytics all in one place."
+msgstr ""
+"Gérez votre compte, suivez les commandes et explorez les analyses en un seul"
+" endroit."
+
+#: apps/accounts/templates/accounts/dashboard.html:147
+#, fuzzy
+#| msgid "Profile"
+msgid "User Profile"
+msgstr "Profil"
+
+#: apps/accounts/templates/accounts/dashboard.html:155
+#: apps/accounts/templates/accounts/includes/sidebar.html:94
+msgid "My Profile"
+msgstr "Mon profil"
+
+#: apps/accounts/templates/accounts/dashboard.html:169
+#, fuzzy
+#| msgid "Orders"
+msgid "Orders Image"
+msgstr "Ordres"
+
+#: apps/accounts/templates/accounts/dashboard.html:172
+#: apps/accounts/templates/accounts/includes/sidebar.html:78
+msgid "Orders"
+msgstr "Ordres"
+
+#: apps/accounts/templates/accounts/dashboard.html:174
+msgid ""
+"Check your past and current orders, track shipments, and manage returns."
+msgstr ""
+"Vérifiez vos commandes passées et actuelles, suivez les expéditions et gérez"
+" les retours."
+
+#: apps/accounts/templates/accounts/dashboard.html:177
+msgid "View Orders"
+msgstr "Ordres"
+
+#: apps/accounts/templates/accounts/dashboard.html:189
+#, fuzzy
+#| msgid "Settings"
+msgid "Settings Image"
+msgstr "Paramètres"
+
+#: apps/accounts/templates/accounts/dashboard.html:192
+msgid "Account Settings"
+msgstr "Paramètres de l'application"
+
+#: apps/accounts/templates/accounts/dashboard.html:194
+msgid "Update personal info, change password, or manage privacy preferences."
+msgstr ""
+"Mettez à jour les informations personnelles, modifiez le mot de passe ou "
+"gérez les préférences de confidentialité."
+
+#: apps/accounts/templates/accounts/dashboard.html:197
+msgid "Go to Settings"
+msgstr "Paramètres"
+
+#: apps/accounts/templates/accounts/forgot_password.html:3
+#: apps/accounts/templates/accounts/forgot_password.html:12
+msgid "Forgot Password"
+msgstr "Mot de passe actuel"
+
+#: apps/accounts/templates/accounts/forgot_password.html:13
+msgid "Enter your registered email to receive OTP."
+msgstr "Entrez votre e-mail enregistré pour recevoir OTP."
+
+#: apps/accounts/templates/accounts/forgot_password.html:19
+msgid "Registered Email"
+msgstr "Registre"
+
+#: apps/accounts/templates/accounts/forgot_password.html:20
+msgid "example@gmail.com"
+msgstr "exemple@gmail.com"
+
+#: apps/accounts/templates/accounts/forgot_password.html:24
+msgid "Send OTP"
+msgstr "Envoyer OTP"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:73
+#: templates/navbar.html:107
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:83
+#: apps/orders/templates/orders/my_orders.html:142 templates/footer.html:98
+msgid "Products"
+msgstr "Produits"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:99
+#: apps/accounts/templates/accounts/login.html:15
+#: apps/accounts/templates/accounts/login.html:42
+#: apps/accounts/templates/accounts/register.html:49 templates/navbar.html:133
+msgid "Login"
+msgstr "Se connecter"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:105
+#: templates/navbar.html:113
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: apps/accounts/templates/accounts/login.html:6
+#, fuzzy
+#| msgid "Settings / ShopEase"
+msgid "Login | ShopEase"
+msgstr "Paramètres / ShopEase"
+
+#: apps/accounts/templates/accounts/login.html:16
+msgid "Welcome back! Please login to your account."
+msgstr "Bon retour ! Veuillez vous connecter à votre compte."
+
+#: apps/accounts/templates/accounts/login.html:37
+msgid "Forgot Password?"
+msgstr "Mot de passe actuel"
+
+#: apps/accounts/templates/accounts/login.html:46
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte?"
+
+#: apps/accounts/templates/accounts/login.html:48
+#: apps/accounts/templates/accounts/register.html:43 templates/navbar.html:138
+msgid "Register"
+msgstr "Registre"
+
+#: apps/accounts/templates/accounts/login.html:55
+msgid "OR"
+msgstr "OU"
+
+#: apps/accounts/templates/accounts/login.html:61
+msgid "Login with Google"
+msgstr "Se connecter avec Google"
+
+#: apps/accounts/templates/accounts/login.html:64
+msgid "Login with Facebook"
+msgstr "Se connecter avec Facebook"
+
+#: apps/accounts/templates/accounts/login.html:67
+msgid "Login with GitHub"
+msgstr "Se connecter avec GitHub"
+
+#: apps/accounts/templates/accounts/login.html:70
+msgid "Login with Instagram"
+msgstr "Se connecter avec Instagram"
+
+#: apps/accounts/templates/accounts/register.html:6
+#, fuzzy
+#| msgid "Settings / ShopEase"
+msgid "Register | ShopEase"
+msgstr "Paramètres / ShopEase"
+
+#: apps/accounts/templates/accounts/register.html:11
+msgid "Create Account"
+msgstr "Créer un compte"
+
+#: apps/accounts/templates/accounts/register.html:47
+#, fuzzy
+#| msgid "Don't have an account?"
+msgid "Already have an account?"
+msgstr "Vous n'avez pas de compte?"
+
+#: apps/core/forms.py:14 templates/contact.html:44
+#, fuzzy
+#| msgid "Last Name"
+msgid "Name"
+msgstr "Nom de famille"
+
+#: apps/core/forms.py:16 templates/contact.html:52
+msgid "Message"
+msgstr "Message"
+
+#: apps/orders/templates/orders/my_orders.html:6
+msgid "My Orders / ShopEase"
+msgstr "Paramètres / ShopEase"
+
+#: apps/orders/templates/orders/my_orders.html:20
+msgid "My Orders"
+msgstr "Ordres"
+
+#: apps/orders/templates/orders/my_orders.html:21
+msgid "View all your past and recent purchases in one place."
+msgstr "Visualisez tous vos achats passés et récents en un seul endroit."
+
+#: apps/orders/templates/orders/my_orders.html:49
+msgid "Order"
+msgstr "Ordres"
+
+#: apps/orders/templates/orders/my_orders.html:53
+msgid "Pending"
+msgstr "En attente"
+
+#: apps/orders/templates/orders/my_orders.html:54
+msgid "Delivered"
+msgstr "Livré"
+
+#: apps/orders/templates/orders/my_orders.html:55
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: apps/orders/templates/orders/my_orders.html:75
+msgid "Qty"
+msgstr "Quantité"
+
+#: apps/orders/templates/orders/my_orders.html:87
+msgid "View Products"
+msgstr "Produits"
+
+#: apps/orders/templates/orders/my_orders.html:92
+#: apps/orders/templates/orders/my_orders.html:96
+msgid "Update Ordered Product"
+msgstr "Produits"
+
+#: apps/orders/templates/orders/my_orders.html:101
+msgid "Delete Order"
+msgstr "Ordres"
+
+#: apps/orders/templates/orders/my_orders.html:107
+msgid "Order Total"
+msgstr "Total"
+
+#: apps/orders/templates/orders/my_orders.html:115
+msgid "No Orders"
+msgstr "Ordres"
+
+#: apps/orders/templates/orders/my_orders.html:116
+msgid "No orders found."
+msgstr "Aucune commande trouvée."
+
+#: apps/orders/templates/orders/my_orders.html:131
+msgid "Action completed successfully!"
+msgstr "Action terminée avec succès !"
+
+#: apps/orders/templates/orders/my_orders.html:132
+#: apps/orders/templates/orders/my_orders.html:143
+#: apps/shop/templates/shop/stock_products_list.html:37
+#: templates/components/cart_modal.html:23
+msgid "Close"
+msgstr "Fermer"
+
+#: apps/shop/models.py:9
+msgid "Electronics"
+msgstr "Électronique"
+
+#: apps/shop/models.py:10
+msgid "Tech"
+msgstr "Technologie"
+
+#: apps/shop/models.py:11
+msgid "Sports"
+msgstr "Sportif"
+
+#: apps/shop/models.py:12
+msgid "Fashion"
+msgstr "Mode"
+
+#: apps/shop/models.py:13
+msgid "Home & Kitchen"
+msgstr "Maison et cuisine"
+
+#: apps/shop/templates/shop/stock_products_list.html:5
+#, fuzzy
+#| msgid "Products"
+msgid "All Products"
+msgstr "Produits"
+
+#: apps/shop/templates/shop/stock_products_list.html:20
+#, fuzzy
+#| msgid "Products"
+msgid "Our Products"
+msgstr "Produits"
+
+#: apps/shop/templates/shop/stock_products_list.html:21
+msgid "Explore all categories and discover amazing items."
+msgstr "Explorez toutes les catégories et découvrez des articles incroyables."
+
+#: apps/shop/templates/shop/stock_products_list.html:25
+#: apps/shop/templates/shop/stock_products_list.html:59
+msgid "Create Product"
+msgstr "Produits"
+
+#: apps/shop/templates/shop/stock_products_list.html:36
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Create New Product"
+msgstr "Produits"
+
+#: apps/shop/templates/shop/stock_products_list.html:58
+#, fuzzy
+#| msgid "Cancelled"
+msgid "Cancel"
+msgstr "Annulé"
+
+#: apps/shop/templates/shop/stock_products_list.html:86
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Featured"
+msgstr "Produits"
+
+#: apps/shop/templates/shop/stock_products_list.html:88
+#, fuzzy
+#| msgid "Pending"
+msgid "Trending"
+msgstr "En attente"
+
+#: apps/shop/templates/shop/stock_products_list.html:92
+msgid "View Details"
+msgstr "Ordres"
+
+#: apps/shop/templates/shop/stock_products_list.html:99
+msgid "Update"
+msgstr "Mise à jour"
+
+#: apps/shop/templates/shop/stock_products_list.html:101
+msgid "Are you sure you want to delete this product?"
+msgstr "Êtes-vous sûr de vouloir supprimer ce produit ?"
+
+#: apps/shop/templates/shop/stock_products_list.html:104
+#, fuzzy
+#| msgid "Delete Order"
+msgid "Delete"
+msgstr "Ordres"
+
+#: apps/shop/templates/shop/stock_products_list.html:113
+#, fuzzy
+#| msgid "Search product by name & category..."
+msgid "No products available in this category."
+msgstr "Rechercher un produit par nom et catégorie..."
+
+#: dj_b_ecomm_project/settings.py:114
+msgid "English"
+msgstr "Anglais"
+
+#: dj_b_ecomm_project/settings.py:115
+msgid "French"
+msgstr "Français"
+
+#: dj_b_ecomm_project/settings.py:116
+msgid "Hindi"
+msgstr "hindi"
+
+#: dj_b_ecomm_project/settings.py:117
+msgid "Punjabi"
+msgstr "Pendjabi"
+
+#: templates/about.html:4 templates/navbar.html:36
+msgid "About"
+msgstr "À propos"
+
+#: templates/about.html:33
+msgid "About ShopEase"
+msgstr "À propos de ShopEase"
+
+#: templates/about.html:35
+msgid ""
+"Welcome to <strong>ShopEase</strong> — your one-stop destination for smart, "
+"easy, and enjoyable online shopping!<br><br> We aim to bring you the best "
+"deals, top-quality products, and a seamless shopping experience from the "
+"comfort of your home.<br><br> Built with ❤️ using Django and Bootstrap."
+msgstr ""
+"Bienvenue sur <strong>Achetez facilement</strong> — votre destination unique"
+" pour des achats en ligne intelligents, faciles et agréables !<br><br> Notre"
+" objectif est de vous proposer les meilleures offres, des produits de "
+"qualité supérieure et une expérience d'achat fluide dans le confort de votre"
+" maison.<br><br> Construit avec ❤️ en utilisant Django et Bootstrap."
+
+#: templates/components/cart_modal.html:17
+msgid "Your Cart"
+msgstr "Panier"
+
+#: templates/components/cart_modal.html:57
+#: templates/components/checkout.html:21
+msgid "Price"
+msgstr "Prix"
+
+#: templates/components/cart_modal.html:64
+#: templates/components/checkout.html:56
+msgid "Your cart is empty!"
+msgstr "Votre panier est vide !"
+
+#: templates/components/cart_modal.html:70
+#: templates/components/checkout.html:22
+msgid "Total"
+msgstr "Total"
+
+#: templates/components/cart_modal.html:84
+#: templates/components/checkout.html:58
+msgid "Continue Shopping"
+msgstr "Continuer vos achats"
+
+#: templates/components/cart_modal.html:91
+#: templates/components/checkout.html:9
+msgid "Checkout"
+msgstr "Passer à la caisse"
+
+#: templates/components/checkout.html:18
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "Produits"
+
+#: templates/components/checkout.html:19
+msgid "Image"
+msgstr "Image"
+
+#: templates/components/checkout.html:20
+msgid "Quantity"
+msgstr "Quantité"
+
+#: templates/components/checkout.html:41
+#, fuzzy
+#| msgid "Total"
+msgid "Total:"
+msgstr "Total"
+
+#: templates/components/checkout.html:50
+#, fuzzy
+#| msgid "View Orders"
+msgid "Place Order"
+msgstr "Ordres"
+
+#: templates/components/product_card.html:19
+msgid "Add to Cart"
+msgstr "Ajouter au panier"
+
+#: templates/contact.html:32
+msgid "Contact Us"
+msgstr "Contact"
+
+#: templates/contact.html:36
+msgid "Your message has been sent successfully!"
+msgstr "Votre message a été envoyé avec succès !"
+
+#: templates/contact.html:57
+msgid "Send Message"
+msgstr "Envoyer un message"
+
+#: templates/footer.html:89 templates/navbar.html:7
+msgid "ShopEase"
+msgstr "Achetez facilement"
+
+#: templates/footer.html:91
+msgid ""
+"Your one-stop e-commerce destination for premium products, seamless "
+"shopping, and a smarter lifestyle."
+msgstr ""
+"Votre destination de commerce électronique unique pour des produits haut de "
+"gamme, des achats fluides et un style de vie plus intelligent."
+
+#: templates/footer.html:96
+msgid "Useful Links"
+msgstr "Liens utiles"
+
+#: templates/footer.html:97 templates/navbar.html:28
+msgid "Home"
+msgstr "Maison"
+
+#: templates/footer.html:99
+msgid "Cart"
+msgstr "Panier"
+
+#: templates/footer.html:104
+msgid "Follow Us"
+msgstr "Suivez-nous"
+
+#: templates/footer.html:117
+msgid "All Rights Reserved."
+msgstr "Tous droits réservés."
+
+#: templates/home.html:156
+msgid "Welcome to ShopEase"
+msgstr "À propos de Achetez facilement"
+
+#: templates/home.html:157
+msgid "Discover amazing products at unbeatable prices!"
+msgstr "Découvrez des produits étonnants à des prix imbattables !"
+
+#: templates/home.html:158
+msgid "Shop Now"
+msgstr "Achetez maintenant"
+
+#: templates/home.html:166
+msgid "Featured Products"
+msgstr "Produits"
+
+#: templates/home.html:168 templates/home.html:189 templates/home.html:210
+msgid "Filter by Category:"
+msgstr "Filtrer par catégorie :"
+
+#: templates/home.html:170 templates/home.html:191 templates/home.html:212
+msgid "All"
+msgstr "Tous"
+
+#: templates/home.html:187
+msgid "Trending Products"
+msgstr "Produits"
+
+#: templates/home.html:208
+msgid "New Comers"
+msgstr "Nouveaux arrivants"
+
+#: templates/navbar.html:16
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: templates/navbar.html:44
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/navbar.html:54
+msgid "Search product by name & category..."
+msgstr "Rechercher un produit par nom et catégorie..."
+
+#: templates/navbar.html:56 templates/navbar.html:59
+msgid "Search"
+msgstr "Recherche"
+
+#: templates/navbar.html:79
+msgid "unique items in cart"
+msgstr "articles uniques dans le panier"
+
+#: templates/navbar.html:128
+msgid "Account"
+msgstr "Compte"
+
+#, fuzzy
+#~ msgid "Enter your name"
+#~ msgstr "Entrez votre mot de passe actuel"
+
+#, fuzzy
+#~ msgid "Enter your email"
+#~ msgstr "Entrez votre mot de passe actuel"
+
+#~ msgid "Write your message here..."
+#~ msgstr "Écrivez votre message ici..."
+
+#, fuzzy
+#~ msgid "View Profile"
+#~ msgstr "Profil"

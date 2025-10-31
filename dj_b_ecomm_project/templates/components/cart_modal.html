@@ -1,12 +1,27 @@
 <!-- 🛒 Cart Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+ {% load i18n %}
+<div
+  class="modal fade"
+  id="cartModal"
+  tabindex="-1"
+  aria-labelledby="cartModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content cart-modal-glass border-0 shadow-lg rounded-4 overflow-hidden">
-      
+    <div
+      class="modal-content cart-modal-glass border-0 shadow-lg rounded-4 overflow-hidden"
+    >
       <!-- Header -->
       <div class="modal-header bg-gradient-primary text-white border-0">
-        <h5 class="modal-title fw-bold" id="cartModalLabel">🛒 Your Cart</h5>
-        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title fw-bold" id="cartModalLabel">
+          🛒 {% trans "Your Cart" %}
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white shadow-none"
+          data-bs-dismiss="modal"
+          aria-label="{% trans 'Close' %}"
+        ></button>
       </div>
 
       <!-- Body -->
@@ -14,40 +29,66 @@
         <div id="cart-items-container">
           {% if cart_items %}
             {% for item in cart_items %}
-              <div class="d-flex align-items-center mb-3 border-bottom pb-2 cart-item" data-cart-item-id="{{ item.pk }}">
-                <img src="{{ item.product.images.url }}" class="me-3 rounded-3 shadow-sm cart-item-img" width="60" alt="{{ item.product.name }}">
+              <div
+                class="d-flex align-items-center mb-3 border-bottom pb-2 cart-item"
+                data-cart-item-id="{{ item.pk }}"
+              >
+                <img
+                  src="{{ item.product.images.url }}"
+                  class="me-3 rounded-3 shadow-sm cart-item-img"
+                  width="60"
+                  alt="{{ item.product.name }}"
+                />
                 <div class="flex-grow-1">
                   <h6 class="mb-1 fw-semibold">{{ item.product.name }}</h6>
                   <div class="d-flex align-items-center">
-                    <button class="btn btn-sm btn-outline-secondary me-2 rounded-circle quantity-btn">−</button>
+                    <button
+                      class="btn btn-sm btn-outline-secondary me-2 rounded-circle decrease-btn"
+                    >
+                      −
+                    </button>
                     <span class="quantity fw-semibold">{{ item.quantity }}</span>
-                    <button class="btn btn-sm btn-outline-secondary ms-2 rounded-circle quantity-btn">+</button>
+                    <button
+                      class="btn btn-sm btn-outline-secondary ms-2 rounded-circle increase-btn"
+                    >
+                      +
+                    </button>
                     <small class="text-muted ms-3">
-                      Price: ₹<span class="item-total fw-semibold">{{ item.total_price }}</span>
+                      {% trans "Price" %}: ₹<span class="item-total fw-semibold">{{ item.total_price }}</span>
                     </small>
                   </div>
                 </div>
               </div>
             {% endfor %}
           {% else %}
-            <p class="text-center text-muted">Your cart is empty!</p>
+            <p class="text-center text-muted">{% trans "Your cart is empty!" %}</p>
           {% endif %}
         </div>
 
-        <!-- ✅ Total (kept outside the dynamic container) -->
+        <!-- ✅ Total -->
         <div class="d-flex justify-content-between mt-3 border-top pt-3">
-          <strong class="fs-6">Total:</strong>
-          <span id="cart-total" class="fw-bold text-success fs-6">₹{{ cart_total }}</span>
+          <strong class="fs-6">{% trans "Total" %}:</strong>
+          <span id="cart-total" class="fw-bold text-success fs-6">
+            ₹{{ cart_total }}
+          </span>
         </div>
       </div>
 
       <!-- Footer -->
       <div class="modal-footer border-0 d-flex justify-content-between">
-        <button type="button" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" data-bs-dismiss="modal">
-          Continue Shopping
+        <button
+          type="button"
+          class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold"
+          data-bs-dismiss="modal"
+        >
+          {% trans "Continue Shopping" %}
         </button>
-        <a href="{% url 'checkout' %}" class="btn btn-gradient px-4 py-2 rounded-pill fw-semibold" id="checkout-btn">
-          Checkout <i class="bi bi-arrow-right ms-1"></i>
+        <a
+          href="{% url 'checkout' %}"
+          class="btn btn-gradient px-4 py-2 rounded-pill fw-semibold"
+          id="checkout-btn"
+        >
+          {% trans "Checkout" %} <i class="bi bi-arrow-right ms-1"></i>
         </a>
       </div>
     </div>
@@ -55,23 +96,29 @@
 </div>
 
 <!-- ✅ Toast container -->
-<div id="toast-container-top" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1080;"></div>
+<div
+  id="toast-container-top"
+  class="position-fixed top-0 start-50 translate-middle-x mt-3"
+  style="z-index: 1080"
+></div>
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const cartCountBadge = document.querySelector('.navbar .badge');
-  const cartItemsContainer = document.getElementById('cart-items-container');
-  const cartTotalElem = document.getElementById('cart-total');
+  document.addEventListener("DOMContentLoaded", () => {
+    const cartCountBadge = document.querySelector(".navbar .badge");
+    const cartItemsContainer = document.getElementById("cart-items-container");
+    const cartTotalElem = document.getElementById("cart-total");
 
-  function updateCartModal(cart_items, cart_total, cart_count) {
-    cartCountBadge.textContent = cart_count;
-    cartTotalElem.textContent = `₹${cart_total.toFixed(2)}`;
-    cartItemsContainer.innerHTML = '';
+    function updateCartModal(cart_items, cart_total, cart_count) {
+      cartCountBadge.textContent = cart_count;
+      cartTotalElem.textContent = `₹${cart_total.toFixed(2)}`;
+      cartItemsContainer.innerHTML = "";
 
-    if (cart_items.length > 0) {
-      cart_items.forEach(item => {
-        cartItemsContainer.insertAdjacentHTML('beforeend', `
+      if (cart_items.length > 0) {
+        cart_items.forEach((item) => {
+          cartItemsContainer.insertAdjacentHTML(
+            "beforeend",
+            `
           <div class="d-flex align-items-center mb-3 border-bottom pb-2 cart-item" data-cart-item-id="${item.id}">
             <img src="${item.image}" class="me-3 rounded-3 shadow-sm cart-item-img" width="60" alt="${item.name}">
             <div class="flex-grow-1">
@@ -84,68 +131,83 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </div>
-        `);
-      });
-      attachQuantityButtons();
-    } else {
-      cartItemsContainer.innerHTML = '<p class="text-center text-muted">Your cart is empty!</p>';
+        `
+          );
+        });
+        attachQuantityButtons();
+      } else {
+        cartItemsContainer.innerHTML =
+          '<p class="text-center text-muted">Your cart is empty!</p>';
+      }
     }
-  }
 
-  function attachQuantityButtons() {
-    document.querySelectorAll('.increase-btn, .decrease-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cartItemDiv = btn.closest('[data-cart-item-id]');
-        const itemId = cartItemDiv.dataset.cartItemId;
-        const action = btn.classList.contains('increase-btn') ? 'increase' : 'decrease';
+    function attachQuantityButtons() {
+      document
+        .querySelectorAll(".increase-btn, .decrease-btn")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const cartItemDiv = btn.closest("[data-cart-item-id]");
+            const itemId = cartItemDiv.dataset.cartItemId;
+            const action = btn.classList.contains("increase-btn")
+              ? "increase"
+              : "decrease";
 
-        fetch("{% url 'update_cart_item' %}", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': '{{ csrf_token }}'
-          },
-          body: `item_id=${itemId}&action=${action}`
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) updateCartModal(data.cart_items, data.cart_total, data.cart_count);
+            fetch("{% url 'update_cart_item' %}", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}",
+              },
+              body: `item_id=${itemId}&action=${action}`,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.success)
+                  updateCartModal(
+                    data.cart_items,
+                    data.cart_total,
+                    data.cart_count
+                  );
+              });
+          });
         });
+    }
+
+    document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const productId = btn.dataset.productId;
+
+        fetch(`/add-to-cart/?product_id=${productId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              updateCartModal(
+                data.cart_items,
+                data.cart_total,
+                data.cart_count
+              );
+              showToast("✅ Item added to cart!", "success");
+            } else {
+              showToast("⚠️ Please login to add items.", "danger");
+            }
+          });
       });
     });
-  }
 
-  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const productId = btn.dataset.productId;
+    attachQuantityButtons();
 
-      fetch(`/add-to-cart/?product_id=${productId}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            updateCartModal(data.cart_items, data.cart_total, data.cart_count);
-            showToast('✅ Item added to cart!', 'success');
-          } else {
-            showToast('⚠️ Please login to add items.', 'danger');
-          }
-        });
+    const checkoutBtn = document.getElementById("checkout-btn");
+    checkoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cartModalEl = document.getElementById("cartModal");
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(cartModalEl);
+      modalInstance.hide();
+
+      setTimeout(() => {
+        window.location.href = checkoutBtn.href;
+      }, 200);
     });
   });
-
-  attachQuantityButtons();
-
-  const checkoutBtn = document.getElementById('checkout-btn');
-  checkoutBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const cartModalEl = document.getElementById('cartModal');
-    const modalInstance = bootstrap.Modal.getOrCreateInstance(cartModalEl);
-    modalInstance.hide();
-
-    setTimeout(() => {
-      window.location.href = checkoutBtn.href;
-    }, 200);
-  });
-});
 </script>
 
 <style>

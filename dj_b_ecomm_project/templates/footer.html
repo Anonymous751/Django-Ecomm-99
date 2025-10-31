@@ -1,130 +1,121 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elegant Footer - ShopEase</title>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    rel="stylesheet"
-  >
-  <style>
-    /* 🌊 Elegant Footer Styles */
-    footer {
-      background-color: #083a4f;
-      color: #f8f9fa;
-      padding-top: 50px;
-      font-family: "Poppins", sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elegant Footer - ShopEase</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      footer {
+        background-color: #083a4f;
+        color: #f8f9fa;
+        padding-top: 50px;
+        font-family: "Poppins", sans-serif;
+      }
 
-    footer h6 {
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      color: #00c6ff;
-      letter-spacing: 1px;
-    }
+      footer h6 {
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        color: #00c6ff;
+        letter-spacing: 1px;
+      }
 
-    footer p, footer a {
-      color: #dbe9f4;
-      font-size: 0.95rem;
-    }
+      footer p,
+      footer a {
+        color: #dbe9f4;
+        font-size: 0.95rem;
+      }
 
-    footer a {
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+      footer a {
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
 
-    footer a:hover {
-      color: #00c6ff;
-    }
+      footer a:hover {
+        color: #00c6ff;
+      }
 
-    /* 🌐 Social Icons */
-    .social-icons a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      background: #0a607d;
-      border-radius: 50%;
-      color: white;
-      margin-right: 10px;
-      transition: all 0.3s ease;
-    }
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background: #0a607d;
+        border-radius: 50%;
+        color: white;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+      }
 
-    .social-icons a:hover {
-      background: #00c6ff;
-      color: #083a4f;
-      transform: translateY(-3px);
-    }
+      .social-icons a:hover {
+        background: #00c6ff;
+        color: #083a4f;
+        transform: translateY(-3px);
+      }
 
-    /* Copyright */
-    .footer-bottom {
-      background: #072f40;
-      color: #cbd5e1;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
-      margin-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Responsive */
-    @media (max-width: 767px) {
-      footer .col-md-4 {
+      .footer-bottom {
+        background: #072f40;
+        color: #cbd5e1;
         text-align: center;
-        margin-bottom: 25px;
+        padding: 15px 0;
+        font-size: 0.9rem;
+        margin-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      .social-icons {
-        justify-content: center;
+      @media (max-width: 767px) {
+        footer .col-md-4 {
+          text-align: center;
+          margin-bottom: 25px;
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
       }
-    }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
 
-<!-- 🌟 Elegant Footer -->
-<footer>
-  <div class="container text-center text-md-start px-4">
-    <div class="row">
+  <body>
+    <footer>
+      <div class="container text-center text-md-start px-4">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h6>{% trans "ShopEase" %}</h6>
+            <p>
+              {% trans "Your one-stop e-commerce destination for premium products, seamless shopping, and a smarter lifestyle." %}
+            </p>
+          </div>
 
-      <!-- About -->
-      <div class="col-md-4 mb-4">
-        <h6>ShopEase</h6>
-        <p>
-          Your one-stop e-commerce destination for premium products, seamless shopping, and a smarter lifestyle.
-        </p>
-      </div>
+          <div class="col-md-4 mb-4">
+            <h6>{% trans "Useful Links" %}</h6>
+            <p><a href="#">{% trans "Home" %}</a></p>
+            <p><a href="#">{% trans "Products" %}</a></p>
+            <p><a href="#">{% trans "Cart" %}</a></p>
+            <p><a href="#">{% trans "Profile" %}</a></p>
+          </div>
 
-      <!-- Useful Links -->
-      <div class="col-md-4 mb-4">
-        <h6>Useful Links</h6>
-        <p><a href="#">Home</a></p>
-        <p><a href="#">Products</a></p>
-        <p><a href="#">Cart</a></p>
-        <p><a href="#">Profile</a></p>
-      </div>
-
-      <!-- Social Media -->
-      <div class="col-md-4 mb-4">
-        <h6>Follow Us</h6>
-        <div class="social-icons d-flex">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+          <div class="col-md-4 mb-4">
+            <h6>{% trans "Follow Us" %}</h6>
+            <div class="social-icons d-flex">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Copyright -->
-  <div class="footer-bottom">
-    © 2025 <strong>K@M@N P@N@G</strong>. All Rights Reserved.
-  </div>
-</footer>
-
-</body>
+      <div class="footer-bottom">
+        © 2025 <strong>K@M@N P@N@G</strong>. {% trans "All Rights Reserved." %}
+      </div>
+    </footer>
+  </body>
 </html>

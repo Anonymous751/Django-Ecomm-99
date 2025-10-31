@@ -123,7 +123,7 @@ def get_cart_data(request):
 
 def checkout_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('accounts:login')
 
     cart_items = CartItem.objects.filter(user=request.user)
     items_with_total = []

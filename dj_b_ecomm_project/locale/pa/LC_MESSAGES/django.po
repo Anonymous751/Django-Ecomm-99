@@ -1,0 +1,768 @@
+# French translations for Django-Bootstrap-EComm project.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Kamanpreet Singh <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Django-Bootstrap-EComm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-31 15:46+0530\n"
+"PO-Revision-Date: 2025-10-30 10:30+0530\n"
+"Last-Translator: Kamanpreet Singh <EMAIL@ADDRESS>\n"
+"Language-Team: French <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/accounts/forms.py:23 apps/accounts/forms.py:39
+#: apps/accounts/forms.py:82
+#: apps/accounts/templates/accounts/admin_settings.html:68
+#: apps/core/forms.py:15 templates/contact.html:48
+msgid "Email"
+msgstr "ਈਮੇਲ"
+
+#: apps/accounts/forms.py:24
+msgid "Enter a valid email address."
+msgstr "ਇੱਕ ਵੈਧ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ।"
+
+#: apps/accounts/forms.py:30 apps/accounts/forms.py:42
+#: apps/accounts/templates/accounts/admin_settings.html:43
+msgid "Profile Image"
+msgstr "ਪ੍ਰੋਫਾਈਲ ਚਿੱਤਰ"
+
+#: apps/accounts/forms.py:31
+msgid "Optional: Upload a profile image."
+msgstr "ਵਿਕਲਪਿਕ: ਇੱਕ ਪ੍ਰੋਫਾਈਲ ਚਿੱਤਰ ਅੱਪਲੋਡ ਕਰੋ।"
+
+#: apps/accounts/forms.py:38
+msgid "Username"
+msgstr "ਉਪਭੋਗਤਾ ਨਾਮ"
+
+#: apps/accounts/forms.py:40 apps/accounts/forms.py:87
+msgid "Password"
+msgstr "ਪਾਸਵਰਡ"
+
+#: apps/accounts/forms.py:41
+#, fuzzy
+#| msgid "Confirm New Password"
+msgid "Confirm Password"
+msgstr "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
+
+#: apps/accounts/forms.py:45
+msgid "Choose a unique username."
+msgstr "ਇੱਕ ਵਿਲੱਖਣ ਉਪਭੋਗਤਾ ਨਾਮ ਚੁਣੋ।"
+
+#: apps/accounts/forms.py:46
+msgid "Your password must contain at least 8 characters."
+msgstr "ਤੁਹਾਡੇ ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
+
+#: apps/accounts/forms.py:47
+msgid "Enter the same password again for confirmation."
+msgstr "ਪੁਸ਼ਟੀ ਲਈ ਉਹੀ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ।"
+
+#: apps/accounts/forms.py:51
+#, fuzzy
+#| msgid "Enter your current password"
+msgid "Enter your password"
+msgstr "ਆਪਣਾ ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ"
+
+#: apps/accounts/forms.py:52
+#, fuzzy
+#| msgid "Confirm new password"
+msgid "Confirm your password"
+msgstr "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:6
+msgid "Settings / ShopEase"
+msgstr "ਸੈਟਿੰਗਾਂ / ਖਰੀਦਾਰੀ ਆਸਾਨ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:20
+#: apps/accounts/templates/accounts/includes/sidebar.html:88
+msgid "Settings"
+msgstr "ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:24
+#: templates/footer.html:100 templates/navbar.html:100
+msgid "Profile"
+msgstr "ਪ੍ਰੋਫਾਈਲ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:25
+#: apps/accounts/templates/accounts/admin_settings.html:101
+msgid "Account Preferences"
+msgstr "ਖਾਤਾ ਤਰਜੀਹਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:26
+#: apps/accounts/templates/accounts/admin_settings.html:149
+msgid "Privacy & Security"
+msgstr "ਗੋਪਨੀਯਤਾ ਅਤੇ ਸੁਰੱਖਿਆ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:27
+#: apps/accounts/templates/accounts/admin_settings.html:219
+msgid "App Settings"
+msgstr "ਐਪ ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:35
+msgid "Profile Settings"
+msgstr "ਪ੍ਰੋਫਾਈਲ ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:45
+msgid "Default Profile"
+msgstr "ਪੂਰਵ-ਨਿਰਧਾਰਤ ਪ੍ਰੋਫਾਈਲ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:50
+msgid "Change Photo"
+msgstr "ਫੋਟੋ ਬਦਲੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:58
+msgid "First Name"
+msgstr "ਪਹਿਲਾ ਨਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:62
+msgid "Last Name"
+msgstr "ਆਖਰੀ ਨਾਂਮ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:74
+msgid "Change Password"
+msgstr "ਪਾਸਵਰਡ ਬਦਲੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:76
+msgid "Current Password"
+msgstr "ਵਰਤਮਾਨ ਪਾਸਵਰਡ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:77
+msgid "Enter your current password"
+msgstr "ਆਪਣਾ ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:81
+msgid "New Password"
+msgstr "ਨਵਾਂ ਪਾਸਵਰਡ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:82
+msgid "Enter new password"
+msgstr "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:86
+msgid "Confirm New Password"
+msgstr "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:87
+msgid "Confirm new password"
+msgstr "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:93
+#: apps/accounts/templates/accounts/admin_settings.html:126
+#: apps/accounts/templates/accounts/admin_settings.html:237
+msgid "Save Changes"
+msgstr "ਤਬਦੀਲੀਆਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:109
+msgid "Language"
+msgstr "ਭਾਸ਼ਾ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:135
+msgid "Timezone"
+msgstr "ਸਮਾਂ ਖੇਤਰ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:159
+msgid "Two-Factor Authentication (2FA)"
+msgstr "ਦੋ-ਕਾਰਕ ਪ੍ਰਮਾਣਿਕਤਾ (2FA)"
+
+#: apps/accounts/templates/accounts/admin_settings.html:161
+msgid "Add an extra layer of security to your account."
+msgstr "ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਸੁਰੱਖਿਆ ਦੀ ਇੱਕ ਵਾਧੂ ਪਰਤ ਸ਼ਾਮਲ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/admin_settings.html:166
+msgid "Disable 2FA"
+msgstr "2FA ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:170
+msgid "Enable 2FA"
+msgstr "2FA ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:179
+msgid "Manage Blocked Users"
+msgstr "ਬਲੌਕ ਕੀਤੇ ਉਪਭੋਗਤਾਵਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:183
+msgid "-- Choose a User --"
+msgstr "-- ਇੱਕ ਉਪਭੋਗਤਾ ਚੁਣੋ --"
+
+#: apps/accounts/templates/accounts/admin_settings.html:189
+msgid "Block"
+msgstr "ਬਲਾਕ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:192
+msgid "Unblock"
+msgstr "ਅਨਬਲੌਕ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:200
+msgid "Privacy Settings"
+msgstr "ਗੋਪਨੀਯਤਾ ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:205
+msgid "Make my account private"
+msgstr "ਮੇਰੇ ਖਾਤੇ ਨੂੰ ਨਿੱਜੀ ਬਣਾਓ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:210
+msgid "Make Account Private"
+msgstr "ਖਾਤੇ ਨੂੰ ਨਿੱਜੀ ਬਣਾਓ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:224
+msgid "Dark Mode"
+msgstr "ਡਾਰਕ ਮੋਡ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:227
+msgid "Dashboard Analytics"
+msgstr "ਡੈਸ਼ਬੋਰਡ ਵਿਸ਼ਲੇਸ਼ਣ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:229
+msgid "Basic"
+msgstr "ਮੂਲ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:230
+msgid "Advanced"
+msgstr "ਉੱਨਤ"
+
+#: apps/accounts/templates/accounts/admin_settings.html:231
+msgid "Professional"
+msgstr "ਪੇਸ਼ੇਵਰ"
+
+#: apps/accounts/templates/accounts/dashboard.html:126
+msgid "Welcome,"
+msgstr "ਜੀ ਆਇਆਂ ਨੂੰ,"
+
+#: apps/accounts/templates/accounts/dashboard.html:129
+msgid ""
+"Manage your account, track orders, and explore analytics all in one place."
+msgstr ""
+"ਆਪਣੇ ਖਾਤੇ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ, ਆਰਡਰਾਂ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ, ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ ਦੀ ਪੜਚੋਲ ਕਰੋ, "
+"ਸਭ ਕੁਝ ਇੱਕੋ ਥਾਂ 'ਤੇ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/dashboard.html:147
+#, fuzzy
+#| msgid "Profile"
+msgid "User Profile"
+msgstr "ਪ੍ਰੋਫਾਈਲ"
+
+#: apps/accounts/templates/accounts/dashboard.html:155
+#: apps/accounts/templates/accounts/includes/sidebar.html:94
+msgid "My Profile"
+msgstr "ਮੇਰੀ ਪ੍ਰੋਫ਼ਾਈਲ"
+
+#: apps/accounts/templates/accounts/dashboard.html:169
+#, fuzzy
+#| msgid "Orders"
+msgid "Orders Image"
+msgstr "ਆਰਡਰ"
+
+#: apps/accounts/templates/accounts/dashboard.html:172
+#: apps/accounts/templates/accounts/includes/sidebar.html:78
+msgid "Orders"
+msgstr "ਆਰਡਰ"
+
+#: apps/accounts/templates/accounts/dashboard.html:174
+msgid ""
+"Check your past and current orders, track shipments, and manage returns."
+msgstr ""
+"ਆਪਣੇ ਪਿਛਲੇ ਅਤੇ ਮੌਜੂਦਾ ਆਰਡਰਾਂ ਦੀ ਜਾਂਚ ਕਰੋ, ਸ਼ਿਪਮੈਂਟਾਂ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ ਅਤੇ "
+"ਰਿਟਰਨਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/dashboard.html:177
+msgid "View Orders"
+msgstr "ਆਰਡਰ"
+
+#: apps/accounts/templates/accounts/dashboard.html:189
+msgid "Settings Image"
+msgstr "ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/dashboard.html:192
+msgid "Account Settings"
+msgstr "ਐਪ ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/dashboard.html:194
+msgid "Update personal info, change password, or manage privacy preferences."
+msgstr ""
+"ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਅੱਪਡੇਟ ਕਰੋ, ਪਾਸਵਰਡ ਬਦਲੋ, ਜਾਂ ਗੋਪਨੀਯਤਾ ਤਰਜੀਹਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/dashboard.html:197
+msgid "Go to Settings"
+msgstr "ਸੈਟਿੰਗਾਂ"
+
+#: apps/accounts/templates/accounts/forgot_password.html:3
+#: apps/accounts/templates/accounts/forgot_password.html:12
+msgid "Forgot Password"
+msgstr "ਵਰਤਮਾਨ ਪਾਸਵਰਡ"
+
+#: apps/accounts/templates/accounts/forgot_password.html:13
+msgid "Enter your registered email to receive OTP."
+msgstr "OTP ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਆਪਣੀ ਰਜਿਸਟਰਡ ਈਮੇਲ ਦਰਜ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/forgot_password.html:19
+msgid "Registered Email"
+msgstr "ਰਜਿਸਟਰ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/forgot_password.html:20
+msgid "example@gmail.com"
+msgstr "example@gmail.com"
+
+#: apps/accounts/templates/accounts/forgot_password.html:24
+msgid "Send OTP"
+msgstr "OTP ਭੇਜੋ"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:73
+#: templates/navbar.html:107
+msgid "Dashboard"
+msgstr "ਡੈਸ਼ਬੋਰਡ"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:83
+#: apps/orders/templates/orders/my_orders.html:142 templates/footer.html:98
+msgid "Products"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:99
+#: apps/accounts/templates/accounts/login.html:15
+#: apps/accounts/templates/accounts/login.html:42
+#: apps/accounts/templates/accounts/register.html:49 templates/navbar.html:133
+msgid "Login"
+msgstr "ਲਾਗਿਨ"
+
+#: apps/accounts/templates/accounts/includes/sidebar.html:105
+#: templates/navbar.html:113
+msgid "Logout"
+msgstr "ਲਾਗਆਉਟ"
+
+#: apps/accounts/templates/accounts/login.html:6
+#, fuzzy
+#| msgid "Settings / ShopEase"
+msgid "Login | ShopEase"
+msgstr "ਸੈਟਿੰਗਾਂ / ਖਰੀਦਾਰੀ ਆਸਾਨ"
+
+#: apps/accounts/templates/accounts/login.html:16
+msgid "Welcome back! Please login to your account."
+msgstr "ਵਾਪਸ ਸੁਆਗਤ ਹੈ! ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਲੌਗਇਨ ਕਰੋ।"
+
+#: apps/accounts/templates/accounts/login.html:37
+msgid "Forgot Password?"
+msgstr "ਵਰਤਮਾਨ ਪਾਸਵਰਡ"
+
+#: apps/accounts/templates/accounts/login.html:46
+msgid "Don't have an account?"
+msgstr "ਕੀ ਤੁਹਾਡਾ ਖਾਤਾ ਨਹੀਂ ਹੈ?"
+
+#: apps/accounts/templates/accounts/login.html:48
+#: apps/accounts/templates/accounts/register.html:43 templates/navbar.html:138
+msgid "Register"
+msgstr "ਰਜਿਸਟਰ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/login.html:55
+msgid "OR"
+msgstr "ਜਾਂ"
+
+#: apps/accounts/templates/accounts/login.html:61
+msgid "Login with Google"
+msgstr "ਗੂਗਲ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/login.html:64
+msgid "Login with Facebook"
+msgstr "ਫੇਸਬੁੱਕ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/login.html:67
+msgid "Login with GitHub"
+msgstr "ਇੰਸਟਾਗ੍ਰਾਮ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/login.html:70
+msgid "Login with Instagram"
+msgstr "ਗਿਟਹੱਬ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
+
+#: apps/accounts/templates/accounts/register.html:6
+#, fuzzy
+#| msgid "Settings / ShopEase"
+msgid "Register | ShopEase"
+msgstr "ਸੈਟਿੰਗਾਂ / ਖਰੀਦਾਰੀ ਆਸਾਨ"
+
+#: apps/accounts/templates/accounts/register.html:11
+msgid "Create Account"
+msgstr "ਖਾਤਾ ਬਣਾਓ"
+
+#: apps/accounts/templates/accounts/register.html:47
+#, fuzzy
+#| msgid "Don't have an account?"
+msgid "Already have an account?"
+msgstr "ਕੀ ਤੁਹਾਡਾ ਖਾਤਾ ਨਹੀਂ ਹੈ?"
+
+#: apps/core/forms.py:14 templates/contact.html:44
+msgid "Name"
+msgstr "ਆਖਰੀ ਨਾਂਮ"
+
+#: apps/core/forms.py:16 templates/contact.html:52
+msgid "Message"
+msgstr "ਸੁਨੇਹਾ"
+
+#: apps/orders/templates/orders/my_orders.html:6
+msgid "My Orders / ShopEase"
+msgstr "ਸੈਟਿੰਗਾਂ / ਖਰੀਦਾਰੀ ਆਸਾਨ"
+
+#: apps/orders/templates/orders/my_orders.html:20
+msgid "My Orders"
+msgstr "ਆਰਡਰ"
+
+#: apps/orders/templates/orders/my_orders.html:21
+msgid "View all your past and recent purchases in one place."
+msgstr "ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਪਿਛਲੀਆਂ ਅਤੇ ਹਾਲੀਆ ਖਰੀਦਾਂ ਨੂੰ ਇੱਕ ਥਾਂ 'ਤੇ ਦੇਖੋ।"
+
+#: apps/orders/templates/orders/my_orders.html:49
+msgid "Order"
+msgstr "ਆਰਡਰ"
+
+#: apps/orders/templates/orders/my_orders.html:53
+msgid "Pending"
+msgstr "ਬਕਾਇਆ"
+
+#: apps/orders/templates/orders/my_orders.html:54
+msgid "Delivered"
+msgstr "ਡਿਲੀਵਰ ਕੀਤਾ"
+
+#: apps/orders/templates/orders/my_orders.html:55
+msgid "Cancelled"
+msgstr "ਰੱਦ ਕਰ ਦਿੱਤਾ"
+
+#: apps/orders/templates/orders/my_orders.html:75
+msgid "Qty"
+msgstr "ਮਾਤਰਾ"
+
+#: apps/orders/templates/orders/my_orders.html:87
+msgid "View Products"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/orders/templates/orders/my_orders.html:92
+#: apps/orders/templates/orders/my_orders.html:96
+msgid "Update Ordered Product"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/orders/templates/orders/my_orders.html:101
+msgid "Delete Order"
+msgstr "ਆਰਡਰ"
+
+#: apps/orders/templates/orders/my_orders.html:107
+msgid "Order Total"
+msgstr "ਕੁੱਲ"
+
+#: apps/orders/templates/orders/my_orders.html:115
+msgid "No Orders"
+msgstr "ਆਰਡਰ"
+
+#: apps/orders/templates/orders/my_orders.html:116
+msgid "No orders found."
+msgstr "ਕੋਈ ਆਰਡਰ ਨਹੀਂ ਮਿਲੇ।"
+
+#: apps/orders/templates/orders/my_orders.html:131
+msgid "Action completed successfully!"
+msgstr "ਕਾਰਵਾਈ ਸਫਲਤਾਪੂਰਵਕ ਪੂਰੀ ਹੋਈ!"
+
+#: apps/orders/templates/orders/my_orders.html:132
+#: apps/orders/templates/orders/my_orders.html:143
+#: apps/shop/templates/shop/stock_products_list.html:37
+#: templates/components/cart_modal.html:23
+msgid "Close"
+msgstr "ਬੰਦ ਕਰੋ"
+
+#: apps/shop/models.py:9
+msgid "Electronics"
+msgstr "ਇਲੈਕਟ੍ਰਾਨਿਕਸ"
+
+#: apps/shop/models.py:10
+msgid "Tech"
+msgstr "ਤਕਨੀਕੀ"
+
+#: apps/shop/models.py:11
+msgid "Sports"
+msgstr "ਖੇਡਾਂ"
+
+#: apps/shop/models.py:12
+msgid "Fashion"
+msgstr "ਫੈਸ਼ਨ"
+
+#: apps/shop/models.py:13
+msgid "Home & Kitchen"
+msgstr "ਘਰ ਅਤੇ ਰਸੋਈ"
+
+#: apps/shop/templates/shop/stock_products_list.html:5
+#, fuzzy
+#| msgid "Products"
+msgid "All Products"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/shop/templates/shop/stock_products_list.html:20
+#, fuzzy
+#| msgid "Products"
+msgid "Our Products"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/shop/templates/shop/stock_products_list.html:21
+msgid "Explore all categories and discover amazing items."
+msgstr "ਸਾਰੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਦੀ ਪੜਚੋਲ ਕਰੋ ਅਤੇ ਸ਼ਾਨਦਾਰ ਚੀਜ਼ਾਂ ਦੀ ਖੋਜ ਕਰੋ।"
+
+#: apps/shop/templates/shop/stock_products_list.html:25
+#: apps/shop/templates/shop/stock_products_list.html:59
+msgid "Create Product"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/shop/templates/shop/stock_products_list.html:36
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Create New Product"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/shop/templates/shop/stock_products_list.html:58
+#, fuzzy
+#| msgid "Cancelled"
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰ ਦਿੱਤਾ"
+
+#: apps/shop/templates/shop/stock_products_list.html:86
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Featured"
+msgstr "ਉਤਪਾਦ"
+
+#: apps/shop/templates/shop/stock_products_list.html:88
+msgid "Trending"
+msgstr "ਬਕਾਇਆ"
+
+#: apps/shop/templates/shop/stock_products_list.html:92
+msgid "View Details"
+msgstr "ਆਰਡਰ"
+
+#: apps/shop/templates/shop/stock_products_list.html:99
+msgid "Update"
+msgstr "ਅੱਪਡੇਟ ਕਰੋ"
+
+#: apps/shop/templates/shop/stock_products_list.html:101
+msgid "Are you sure you want to delete this product?"
+msgstr "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ 'ਤੇ ਇਸ ਉਤਪਾਦ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#: apps/shop/templates/shop/stock_products_list.html:104
+#, fuzzy
+#| msgid "Delete Order"
+msgid "Delete"
+msgstr "ਆਰਡਰ"
+
+#: apps/shop/templates/shop/stock_products_list.html:113
+#, fuzzy
+#| msgid "Search product by name & category..."
+msgid "No products available in this category."
+msgstr "ਨਾਮ ਅਤੇ ਸ਼੍ਰੇਣੀ ਦੁਆਰਾ ਉਤਪਾਦ ਖੋਜੋ..."
+
+#: dj_b_ecomm_project/settings.py:114
+msgid "English"
+msgstr "ਅੰਗਰੇਜ਼ੀ"
+
+#: dj_b_ecomm_project/settings.py:115
+msgid "French"
+msgstr "ਫ੍ਰੈਂਚ"
+
+#: dj_b_ecomm_project/settings.py:116
+msgid "Hindi"
+msgstr "ਹਿੰਦੀ"
+
+#: dj_b_ecomm_project/settings.py:117
+msgid "Punjabi"
+msgstr "ਪੰਜਾਬੀ"
+
+#: templates/about.html:4 templates/navbar.html:36
+msgid "About"
+msgstr "ਬਾਰੇ"
+
+#: templates/about.html:33
+msgid "About ShopEase"
+msgstr "ਖਰੀਦਾਰੀ ਆਸਾਨ ਬਾਰੇ"
+
+#: templates/about.html:35
+msgid ""
+"Welcome to <strong>ShopEase</strong> — your one-stop destination for smart, "
+"easy, and enjoyable online shopping!<br><br> We aim to bring you the best "
+"deals, top-quality products, and a seamless shopping experience from the "
+"comfort of your home.<br><br> Built with ❤️ using Django and Bootstrap."
+msgstr ""
+"<strong>ਖਰੀਦਾਰੀ ਆਸਾਨ</strong> ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ — ਸਮਾਰਟ, ਆਸਾਨ, ਅਤੇ "
+"ਆਨੰਦਦਾਇਕ ਔਨਲਾਈਨ ਖਰੀਦਦਾਰੀ ਲਈ ਤੁਹਾਡੀ ਇੱਕ-ਸਟਾਪ ਮੰਜ਼ਿਲ!<br><br> ਸਾਡਾ ਉਦੇਸ਼ "
+"ਤੁਹਾਡੇ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਸੌਦੇ, ਉੱਚ-ਗੁਣਵੱਤਾ ਵਾਲੇ ਉਤਪਾਦ, ਅਤੇ ਤੁਹਾਡੇ ਘਰ ਦੇ ਆਰਾਮ "
+"ਤੋਂ ਇੱਕ ਸਹਿਜ ਖਰੀਦਦਾਰੀ ਅਨੁਭਵ ਲਿਆਉਣਾ ਹੈ।<br><br> Django ਅਤੇ Bootstrap ਦੀ ਵਰਤੋਂ"
+" ਕਰਕੇ ❤️ ਨਾਲ ਬਣਾਇਆ ਗਿਆ ਹੈ।"
+
+#: templates/components/cart_modal.html:17
+msgid "Your Cart"
+msgstr "ਕਾਰਟ"
+
+#: templates/components/cart_modal.html:57
+#: templates/components/checkout.html:21
+msgid "Price"
+msgstr "ਕੀਮਤ"
+
+#: templates/components/cart_modal.html:64
+#: templates/components/checkout.html:56
+msgid "Your cart is empty!"
+msgstr "ਤੁਹਾਡੀ ਕਾਰਟ ਖਾਲੀ ਹੈ!"
+
+#: templates/components/cart_modal.html:70
+#: templates/components/checkout.html:22
+msgid "Total"
+msgstr "ਕੁੱਲ"
+
+#: templates/components/cart_modal.html:84
+#: templates/components/checkout.html:58
+msgid "Continue Shopping"
+msgstr "ਖਰੀਦਾਰੀ ਜਾਰੀ ਰੱਖੋ"
+
+#: templates/components/cart_modal.html:91
+#: templates/components/checkout.html:9
+msgid "Checkout"
+msgstr "ਭੁਗਤਾਨ ਕਰੋ"
+
+#: templates/components/checkout.html:18
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "ਉਤਪਾਦ"
+
+#: templates/components/checkout.html:19
+msgid "Image"
+msgstr "ਚਿੱਤਰ"
+
+#: templates/components/checkout.html:20
+msgid "Quantity"
+msgstr "ਮਾਤਰਾ"
+
+#: templates/components/checkout.html:41
+#, fuzzy
+#| msgid "Total"
+msgid "Total:"
+msgstr "ਕੁੱਲ"
+
+#: templates/components/checkout.html:50
+#, fuzzy
+#| msgid "View Orders"
+msgid "Place Order"
+msgstr "ਆਰਡਰ"
+
+#: templates/components/product_card.html:19
+msgid "Add to Cart"
+msgstr "ਕਾਰਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: templates/contact.html:32
+msgid "Contact Us"
+msgstr "ਸੰਪਰਕ ਕਰੋ"
+
+#: templates/contact.html:36
+msgid "Your message has been sent successfully!"
+msgstr "ਤੁਹਾਡਾ ਸੁਨੇਹਾ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ ਹੈ!"
+
+#: templates/contact.html:57
+msgid "Send Message"
+msgstr "ਸੁਨੇਹਾ ਭੇਜੋ"
+
+#: templates/footer.html:89 templates/navbar.html:7
+msgid "ShopEase"
+msgstr "ਖਰੀਦਾਰੀ ਆਸਾਨ"
+
+#: templates/footer.html:91
+msgid ""
+"Your one-stop e-commerce destination for premium products, seamless "
+"shopping, and a smarter lifestyle."
+msgstr ""
+"ਪ੍ਰੀਮੀਅਮ ਉਤਪਾਦਾਂ, ਸਹਿਜ ਖਰੀਦਦਾਰੀ, ਅਤੇ ਇੱਕ ਚੁਸਤ ਜੀਵਨ ਸ਼ੈਲੀ ਲਈ ਤੁਹਾਡਾ ਇੱਕ-ਸਟਾਪ "
+"ਈ-ਕਾਮਰਸ ਮੰਜ਼ਿਲ।"
+
+#: templates/footer.html:96
+msgid "Useful Links"
+msgstr "ਉਪਯੋਗੀ ਲਿੰਕ"
+
+#: templates/footer.html:97 templates/navbar.html:28
+msgid "Home"
+msgstr "ਘਰ"
+
+#: templates/footer.html:99
+msgid "Cart"
+msgstr "ਕਾਰਟ"
+
+#: templates/footer.html:104
+msgid "Follow Us"
+msgstr "ਸਾਡੇ ਪਿਛੇ ਆਓ"
+
+#: templates/footer.html:117
+msgid "All Rights Reserved."
+msgstr "ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ."
+
+#: templates/home.html:156
+msgid "Welcome to ShopEase"
+msgstr "ਖਰੀਦਾਰੀ ਆਸਾਨ ਬਾਰੇ"
+
+#: templates/home.html:157
+msgid "Discover amazing products at unbeatable prices!"
+msgstr "ਅਜੇਤੂ ਕੀਮਤਾਂ 'ਤੇ ਸ਼ਾਨਦਾਰ ਉਤਪਾਦਾਂ ਦੀ ਖੋਜ ਕਰੋ!"
+
+#: templates/home.html:158
+msgid "Shop Now"
+msgstr "ਹੁਣੇ ਖਰੀਦੋ"
+
+#: templates/home.html:166
+msgid "Featured Products"
+msgstr "ਉਤਪਾਦ"
+
+#: templates/home.html:168 templates/home.html:189 templates/home.html:210
+msgid "Filter by Category:"
+msgstr "ਸ਼੍ਰੇਣੀ ਮੁਤਾਬਕ ਫਿਲਟਰ ਕਰੋ:"
+
+#: templates/home.html:170 templates/home.html:191 templates/home.html:212
+msgid "All"
+msgstr "ਸਾਰੇ"
+
+#: templates/home.html:187
+msgid "Trending Products"
+msgstr "ਰੁਝਾਨ ਵਿਚ"
+
+#: templates/home.html:208
+msgid "New Comers"
+msgstr "ਨਵੇਂ ਆਉਣ ਵਾਲੇ"
+
+#: templates/navbar.html:16
+msgid "Toggle navigation"
+msgstr "ਨੈਵੀਗੇਸ਼ਨ ਨੂੰ ਟੌਗਲ ਕਰੋ"
+
+#: templates/navbar.html:44
+msgid "Contact"
+msgstr "ਸੰਪਰਕ ਕਰੋ"
+
+#: templates/navbar.html:54
+msgid "Search product by name & category..."
+msgstr "ਨਾਮ ਅਤੇ ਸ਼੍ਰੇਣੀ ਦੁਆਰਾ ਉਤਪਾਦ ਖੋਜੋ..."
+
+#: templates/navbar.html:56 templates/navbar.html:59
+msgid "Search"
+msgstr "ਖੋਜ"
+
+#: templates/navbar.html:79
+msgid "unique items in cart"
+msgstr "ਕਾਰਟ ਵਿੱਚ ਵਿਲੱਖਣ ਆਈਟਮਾਂ"
+
+#: templates/navbar.html:128
+msgid "Account"
+msgstr "ਖਾਤਾ"
+
+#, fuzzy
+#~ msgid "Enter your name"
+#~ msgstr "ਆਪਣਾ ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ"
+
+#, fuzzy
+#~ msgid "Enter your email"
+#~ msgstr "ਆਪਣਾ ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ"
+
+#~ msgid "Write your message here..."
+#~ msgstr "ਆਪਣਾ ਸੁਨੇਹਾ ਇੱਥੇ ਲਿਖੋ..."
+
+#, fuzzy
+#~ msgid "View Profile"
+#~ msgstr "ਪ੍ਰੋਫਾਈਲ"

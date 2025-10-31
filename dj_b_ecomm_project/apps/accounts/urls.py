@@ -4,6 +4,8 @@ from django.urls import path
 # Import views from the current application
 from . import views
 
+app_name = 'accounts'
+
 # Define all URL patterns for this app
 urlpatterns = [
     # User authentication routes

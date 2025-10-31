@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}Register | ShopEase{% endblock %}
+{% block title %}{% trans "Register | ShopEase" %}{% endblock %}
 
 {% block content %}
 <div class="container my-5" style="max-width: 500px;">
-  <h2 class="mb-4 text-center fw-bold" style="color: #0a415aff;">Create Account</h2>
+  <h2 class="mb-4 text-center fw-bold" style="color: #0a415aff;">
+    {% trans "Create Account" %}
+  </h2>
 
   <form method="POST" enctype="multipart/form-data" class="shadow p-4 rounded-4 bg-white" novalidate>
     {% csrf_token %}
@@ -37,18 +40,21 @@
 
     <button type="submit" 
       class="btn w-100 stylish-btn py-2 fw-semibold rounded-3">
-      <i class="bi bi-person-plus me-2"></i> Register
+      <i class="bi bi-person-plus me-2"></i> {% trans "Register" %}
     </button>
 
     <p class="mt-3 text-center mb-0">
-      Already have an account? 
-      <a href="{% url 'login' %}" class="text-decoration-none fw-semibold text-primary">
-        Login
+      {% trans "Already have an account?" %}
+      <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-semibold text-primary">
+        {% trans "Login" %}
       </a>
     </p>
+
   </form>
 </div>
+{% endblock %}
 
+{% block extra_css %}
 <style>
   .stylish-btn {
     background: linear-gradient(135deg, #4e54c8, #8f94fb);

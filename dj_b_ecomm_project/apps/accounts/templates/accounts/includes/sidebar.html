@@ -65,34 +65,43 @@
   }
 </style>
 
+{% load i18n %}
+
 <div class="sidebar list-group mb-4 position-sticky" style="top: 1rem;">
-  <a href="{% url 'dashboard' %}" 
+  <a href="{% url 'accounts:dashboard' %}" 
      class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-      <i class="bi bi-speedometer2"></i> Dashboard
+      <i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}
   </a>
 
   <a href="{% url 'my_orders' %}" 
      class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'my_orders' %}active{% endif %}">
-      <i class="bi bi-bag-check"></i> Orders
+      <i class="bi bi-bag-check"></i> {% trans "Orders" %}
   </a>
 
   <a href="{% url 'stock_products_list' %}" 
      class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'stock_products_list' %}active{% endif %}">
-      <i class="bi bi-box-seam"></i> Products
+      <i class="bi bi-box-seam"></i> {% trans "Products" %}
   </a>
 
-  <a href="{% url 'admin_settings' %}" 
+  <a href="{% url 'accounts:admin_settings' %}" 
      class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'admin_settings' %}active{% endif %}">
-      <i class="bi bi-gear"></i> Settings
+      <i class="bi bi-gear"></i> {% trans "Settings" %}
   </a>
 
-  <a href="{% url 'profile' username=request.user.username %}" 
+  {% if request.user.is_authenticated and request.user.username %}
+  <a href="{% url 'accounts:profile' username=request.user.username %}"
      class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
-      <i class="bi bi-person-circle"></i> My Profile
+    <i class="bi bi-person-circle"></i> {% trans "My Profile" %}
   </a>
+{% else %}
+  <a href="{% url 'accounts:login' %}"
+     class="list-group-item list-group-item-action">
+    <i class="bi bi-person-circle"></i> {% trans "Login" %}
+  </a>
+{% endif %}
 
-  <a href="{% url 'logout' %}" 
+  <a href="{% url 'accounts:logout' %}" 
      class="list-group-item list-group-item-action text-danger">
-      <i class="bi bi-box-arrow-right"></i> Logout
+      <i class="bi bi-box-arrow-right"></i> {% trans "Logout" %}
   </a>
 </div>

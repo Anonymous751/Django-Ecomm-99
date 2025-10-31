@@ -95,17 +95,17 @@ def admin_settings_view(request):
             if current_password or new_password or confirm_password:
                 if not user.check_password(current_password):
                     messages.error(request, "❌ Current password is incorrect.")
-                    return redirect("admin_settings")
+                    return redirect("accounts:admin_settings")
                 if new_password != confirm_password:
                     messages.error(request, "⚠️ New passwords do not match.")
-                    return redirect("admin_settings")
+                    return redirect("accounts:admin_settings")
                 user.set_password(new_password)
                 update_session_auth_hash(request, user)
                 messages.success(request, "🔐 Password changed successfully!")
 
             user.save()
             messages.success(request, "✅ Profile updated successfully!")
-            return redirect("admin_settings")
+            return redirect("accounts:admin_settings")
 
         # 🔒 Block / Unblock users
         block_user_id = request.POST.get("block_user")
@@ -132,7 +132,7 @@ def admin_settings_view(request):
         user.save()
 
         messages.success(request, "Settings updated successfully!")
-        return redirect("admin_settings")
+        return redirect("accounts:admin_settings")
 
     return render(request, "accounts/admin_settings.html", {"all_users": all_users})
 
@@ -187,9 +187,10 @@ def login_view(request):
     if request.method == 'POST':
         form = UserLoginForm(request, data=request.POST)
         if form.is_valid():
+            print("username")
             email = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-
+            print("email", email)
             user = authenticate(request, username=email, password=password)
 
             if user is not None:
@@ -215,12 +216,12 @@ def login_view(request):
 
                     print(f"[DEBUG] OTP for {user.email}: {otp}")
                     request.session['pending_2fa_user'] = user.id  # type: ignore
-                    return redirect('verify_otp')
+                    return redirect('accounts:verify_otp')
 
                 # ✅ Normal login
                 login(request, user)
                 messages.success(request, f"Welcome, {user.username}!")
-                return redirect('dashboard')
+                return redirect('accounts:dashboard')
 
             else:
                 messages.error(request, "❌ Invalid email or password.")
@@ -247,13 +248,13 @@ def verify_otp_view(request):
 
         if not user_id:
             messages.error(request, "Session expired. Please log in again.")
-            return redirect('login')
+            return redirect('accounts:login')
 
         try:
             user = CustomUser.objects.get(id=user_id)
         except CustomUser.DoesNotExist:
             messages.error(request, "User not found.")
-            return redirect('login')
+            return redirect('accounts:login')
 
         if user.otp_code == otp:
             # ✅ Clear OTP and session
@@ -268,7 +269,7 @@ def verify_otp_view(request):
             # ✅ Log the user in
             login(request, user)
             messages.success(request, f"Welcome back, {user.username}!")
-            return redirect('dashboard')
+            return redirect('accounts:dashboard')
         else:
             messages.error(request, "Invalid OTP. Please try again.")
 
@@ -304,7 +305,7 @@ def update_privacy_security(request):
                 pass
 
         user.save()
-        return redirect('admin_settings')
+        return redirect('accounts:admin_settings')
     
     
 # reset password ?
@@ -343,7 +344,7 @@ def forgot_password_view(request):
 
         request.session["reset_email"] = email
         messages.info(request, "📧 OTP has been sent to your email.")
-        return redirect("verify_reset_otp")
+        return redirect("accounts:verify_reset_otp")
 
     return render(request, "accounts/forgot_password.html")
 
