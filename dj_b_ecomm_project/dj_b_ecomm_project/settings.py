@@ -1,6 +1,6 @@
 
 from pathlib import Path
-import os 
+import os
 from django.utils.translation import gettext_lazy as _
 
 
@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'modeltranslation',  
+    'modeltranslation',
     'apps.accounts',
     'apps.cart',
     'apps.core',
@@ -33,9 +33,37 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "rosetta",
 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.openid_connect',
+
+
 ]
 
+from decouple import config
+
+SOCIALACCOUNT_PROVIDERS = {
+    "openid_connect": {
+        "APPS": [
+            {
+                "provider_id": "linkedin",
+                "name": "LinkedIn",
+                "client_id": config("LINKEDIN_CLIENT_ID"),
+                "secret": config("LINKEDIN_CLIENT_SECRET"),
+                "settings": {
+                    "server_url": "https://www.linkedin.com/oauth",
+                },
+            }
+        ]
+    }
+}
+
 MIDDLEWARE = [
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
      "django.middleware.locale.LocaleMiddleware",
@@ -44,7 +72,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
+
     # Block User Middleware
     "apps.accounts.middlewares.block_check.BlockCheckMiddleware",
 ]
@@ -61,16 +90,30 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.shop.context_processors.cart_context',  
+                'apps.shop.context_processors.cart_context',
+                'django.template.context_processors.request',
+
             ],
         },
     },
 ]
 
+SITE_ID = 1
+
+
 AUTHENTICATION_BACKENDS = [
     'apps.accounts.backends.EmailBackend',   # our custom backend
     'django.contrib.auth.backends.ModelBackend',  # default
+    'allauth.account.auth_backends.AuthenticationBackend', # all auth backend
+
 ]
+
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

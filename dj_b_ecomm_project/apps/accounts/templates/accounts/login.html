@@ -2,14 +2,15 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load i18n %}
+{% load socialaccount %}
 
 {% block title %}{% trans "Login | ShopEase" %}{% endblock %}
 
 {% block content %}
 <div class="container my-5 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <div class="card shadow border-0 rounded-4 p-4" 
+  <div class="card shadow border-0 rounded-4 p-4"
        style="backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.8); width: 100%; max-width: 420px;">
-    
+
     <div class="text-center mb-4">
       <i class="bi bi-person-circle" style="font-size: 3rem; color: #0a415aff;"></i>
       <h2 class="fw-bold mt-2" style="color: #0a415aff;">{% trans "Login" %}</h2>
@@ -56,20 +57,25 @@
       <hr class="flex-grow-1">
     </div>
 
-    <div class="text-center">
-      <a href="#" class="btn social-btn google w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-        <i class="bi bi-google"></i> {% trans "Login with Google" %}
-      </a>
-      <a href="#" class="btn social-btn facebook w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-        <i class="bi bi-facebook"></i> {% trans "Login with Facebook" %}
-      </a>
-      <a href="#" class="btn social-btn github w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-        <i class="bi bi-github"></i> {% trans "Login with GitHub" %}
-      </a>
-      <a href="#" class="btn social-btn instagram w-100 d-flex align-items-center justify-content-center gap-2">
-        <i class="bi bi-instagram"></i> {% trans "Login with Instagram" %}
-      </a>
-    </div>
+   <div class="text-center">
+
+  <a href="{% provider_login_url 'google' %}"
+     class="btn social-btn google w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+      <i class="bi bi-google"></i>  {% trans "Login with Google" %}
+  </a>
+
+  <a href="{% provider_login_url 'github' %}"
+     class="btn social-btn github w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+      <i class="bi bi-github"></i> {% trans "Login with GitHub" %}
+  </a>
+
+  <a href="{% url 'openid_connect_login' provider_id='linkedin' %}"
+     class="btn social-btn linkedin w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+      <i class="bi bi-linkedin"></i> {% trans "Login with LinkedIn" %}
+  </a>
+
+</div>
+
   </div>
 </div>
 {% endblock %}
@@ -149,18 +155,14 @@
     color: white;
   }
 
-  .instagram {
-    border-color: #e1306c;
-    color: #e1306c;
-  }
+ .linkedin {
+  border-color: #0A66C2;
+  color: #0A66C2;
+}
 
-  .instagram:hover {
-    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-    color: white;
-  }
-
-  a.text-decoration-none:hover {
-    text-decoration: underline;
-  }
+.linkedin:hover {
+  background-color: #0A66C2;
+  color: white;
+}
 </style>
 {% endblock %}
