@@ -53,7 +53,7 @@
 [data-theme="dark"] {
   --body-bg: #0b1527;
   --text-color: #e9eef7;
-   --welcome-text-color: #673ab7; 
+   --welcome-text-color: #673ab7;
 
   --brand-dark: #673ab7;
   --brand-light: #ff4081;
@@ -62,7 +62,7 @@
   --products-bg: #101b32;
   --product-card-bg: #1b1f36;
   --product-card-hover-bg: #2c3150;
-  --product-price-color: #e9eef7; 
+  --product-price-color: #e9eef7;
 
   --btn-bg: var(--brand-dark);
   --btn-text: #ffffff;
@@ -208,11 +208,6 @@ form .btn-outline-light:hover {
   border-color: var(--brand-dark, #083a4f);
 }
 
-/* Optional: Dark mode overrides for search */
-[data-theme="dark"] form .form-control {
-  background-color: #1b1f36;
-  color: #ffffff;
-}
 
 [data-theme="dark"] form .btn-outline-light {
   background-color: #1b1f36;
@@ -274,7 +269,7 @@ form .btn-outline-light:hover {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 50%;
+  width: 10%;
   height: 3px;
   background: var(--gradient-text);
   transition: width 0.3s ease;
@@ -282,7 +277,7 @@ form .btn-outline-light:hover {
 }
 
 .products h2:hover::after {
-  width: 100%;
+  width: 20%;
 }
 
 .swiper-slide .card .product-title {
@@ -309,13 +304,92 @@ form .btn-outline-light:hover {
   color: #ffffff !important;
 }
 
+@media (max-width: 576px) {
+  #category {
+    width: 100% !important;
+  }
+}
+
+/* ==================== PRODUCTS FILTER ==================== */
+.products .d-flex.justify-content-between {
+  flex-wrap: wrap;              /* wrap on small screens */
+  align-items: center;          /* vertical center all items */
+  gap: 10px;
+}
+
+.products .d-flex.justify-content-between h2 {
+  flex: 1 1 auto;              /* heading takes remaining space */
+  min-width: 200px;            /* prevent shrinking too much */
+}
+
+.products form.d-flex {
+  flex: 0 0 auto;              /* form width auto */
+  display: flex;
+  align-items: center;         /* vertical center label & select */
+  justify-content: flex-end;   /* move form to right */
+  gap: 8px;
+  flex-wrap: wrap;             /* wrap on small screens */
+  margin: 0;                   /* reset margin */
+}
+
+.products form.d-flex label {
+  margin-bottom: 0;            /* align label vertically with select */
+  white-space: nowrap;          /* prevent breaking on desktop */
+}
+
+.products form.d-flex select.form-select {
+  min-width: 150px;
+  max-width: 250px;
+  width: auto;                 /* flexible width */
+  vertical-align: middle;
+}
+
+/* ==================== RESPONSIVE: TABLET / MOBILE ==================== */
+@media (max-width: 991px) {
+  .products .d-flex.justify-content-between {
+    flex-direction: column;      /* stack heading and filter */
+    align-items: flex-start;     /* align to left */
+  }
+
+  .products form.d-flex {
+    width: 100%;
+    justify-content: flex-start; /* align left */
+    gap: 5px;
+  }
+
+  .products form.d-flex label {
+    font-size: 0.9rem;
+  }
+
+  .products form.d-flex select.form-select {
+    min-width: 120px;
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .products form.d-flex {
+    flex-direction: column;      /* stack label & select vertically */
+    align-items: flex-start;
+  }
+
+  .products form.d-flex label {
+    margin-bottom: 4px;
+  }
+
+  .products form.d-flex select.form-select {
+    width: 100%;
+  }
+}
+
 </style>
 {% endblock %}
 
 {% block content %}
 {% include "components/magnifier.html" %}
 <!-- ==== HERO SECTION ==== -->
-<section class="hero mb-5">
+<section class="hero ">
   <video autoplay muted loop playsinline>
     <source src="{% static 'images/banner_video.mp4' %}" type="video/mp4">
     Your browser does not support the video tag.
@@ -329,67 +403,75 @@ form .btn-outline-light:hover {
 </section>
 
 <!-- ==== FEATURED PRODUCTS ==== -->
-<section class="products mb-5">
+<section class="products pt-3">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-3 flex-wrap gap-2">
       <h2 class="mb-0">{% trans "Featured Products" %}</h2>
-      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
-        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+      <form method="get" action="{% url 'home' %}" class="d-flex gap-2 flex-wrap">
+        <label for="category-featured" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
+        <select name="featured_category" id="category-featured" class="form-select w-auto" onchange="this.form.submit()">
           <option value="">{% trans "All" %}</option>
-          {% for key, value in products.model.CATEGORY_CHOICES %}
-          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
-            {{ value }}
-          </option>
+          {% for key, value in Product.CATEGORY_CHOICES %}
+            <option value="{{ key }}" {% if featured_category == key %}selected{% endif %}>{{ value }}</option>
           {% endfor %}
         </select>
       </form>
     </div>
-    {% include "components/swiper_slider.html" with products=featured_products swiper_class="featured-swiper" %}
+    {% if featured_products.exists %}
+      {% include "components/swiper_slider.html" with products=featured_products swiper_class="featured-swiper" %}
+    {% else %}
+      <p class="text-center py-5">{% trans "No Product in this category is available" %}</p>
+    {% endif %}
   </div>
 </section>
 
 <!-- ==== TRENDING PRODUCTS ==== -->
-<section class="products mb-5">
+<section class="products pt-3">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
       <h2 class="mb-0">{% trans "Trending Products" %}</h2>
-      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
-        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+      <form method="get" action="{% url 'home' %}" class="d-flex gap-2 flex-wrap">
+        <label for="category-trending" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
+        <select name="trending_category" id="category-trending" class="form-select w-auto" onchange="this.form.submit()">
           <option value="">{% trans "All" %}</option>
-          {% for key, value in products.model.CATEGORY_CHOICES %}
-          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
-            {{ value }}
-          </option>
+          {% for key, value in Product.CATEGORY_CHOICES %}
+            <option value="{{ key }}" {% if trending_category == key %}selected{% endif %}>{{ value }}</option>
           {% endfor %}
         </select>
       </form>
     </div>
-    {% include "components/swiper_slider.html" with products=trending_products swiper_class="trending-swiper" %}
+    {% if trending_products.exists %}
+      {% include "components/swiper_slider.html" with products=trending_products swiper_class="trending-swiper" %}
+    {% else %}
+      <p class="text-center py-5">{% trans "No Product in this category is available" %}</p>
+    {% endif %}
   </div>
 </section>
 
 <!-- ==== NEW COMERS ==== -->
-<section class="products mb-5">
+<section class="products pt-3">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
       <h2 class="mb-0">{% trans "New Comers" %}</h2>
-      <form method="get" action="{% url 'home' %}" class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="category" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
-        <select name="category" id="category" class="form-select w-auto" onchange="this.form.submit()">
+      <form method="get" action="{% url 'home' %}" class="d-flex gap-2 flex-wrap">
+        <label for="category-new" class="form-label mb-0">{% trans "Filter by Category:" %}</label>
+        <select name="newcomers_category" id="category-new" class="form-select w-auto" onchange="this.form.submit()">
           <option value="">{% trans "All" %}</option>
-          {% for key, value in products.model.CATEGORY_CHOICES %}
-          <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
-            {{ value }}
-          </option>
+          {% for key, value in Product.CATEGORY_CHOICES %}
+            <option value="{{ key }}" {% if newcomers_category == key %}selected{% endif %}>{{ value }}</option>
           {% endfor %}
         </select>
       </form>
     </div>
-    {% include "components/swiper_slider.html" with products=new_comers swiper_class="new-swiper" %}
+    {% if new_comers.exists %}
+      {% include "components/swiper_slider.html" with products=new_comers swiper_class="new-swiper" %}
+    {% else %}
+      <p class="text-center py-5">{% trans "No Product in this category is available" %}</p>
+    {% endif %}
   </div>
 </section>
+
+
 
 {% include "components/cart_modal.html" %}
 

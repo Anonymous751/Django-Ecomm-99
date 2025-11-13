@@ -77,8 +77,8 @@ body {
     <div class="col-md-9 col-lg-10">
 
       <div class="text-center mb-4">
-        <h2 class="fw-bold">AI Predictions Dashboard</h2>
-        <p class="">Machine Learning Forecasts — Next Month Performance</p>
+        <h2 class="fw-bold">{% trans "AI Predictions Dashboard" %}</h2>
+        <p class="">{% trans "Machine Learning Forecasts — Next Month Performance" %}</p>
         <hr style="width:60%;margin:0 auto;opacity:0.3;">
       </div>
 
@@ -88,25 +88,25 @@ body {
         <div class="row g-3 mb-4 text-center">
           <div class="col-md-3">
             <div class="metric-card">
-              <small class="">Next Month Sales</small>
+              <small class="">{% trans "Next Month Sales" %}</small>
               <h4 class="m-0 text-primary fw-bold">$18,200</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="metric-card">
-              <small class="  ">Total Future Users</small>
+              <small class="">{% trans "Total Future Users" %}</small>
               <h4 class="m-0 text-success fw-bold">900+</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="metric-card">
-              <small class="">Conversion Rate</small>
+              <small class="">{% trans "Conversion Rate" %}</small>
               <h4 class="m-0 text-warning fw-bold">11.2%</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="metric-card">
-              <small class="">Revenue Growth</small>
+              <small class="">{% trans "Revenue Growth" %}</small>
               <h4 class="m-0 text-danger fw-bold">+22%</h4>
             </div>
           </div>
@@ -116,14 +116,14 @@ body {
         <div class="row g-4">
           <div class="col-md-6 d-flex">
             <div class="card shadow-sm p-3 w-100">
-              <h5 class="mb-3 fw-semibold text-primary">Predicted Sales Volume</h5>
+              <h5 class="mb-3 fw-semibold text-primary">{% trans "Predicted Sales Volume" %}</h5>
               <canvas id="chartFutureSales"></canvas>
             </div>
           </div>
 
           <div class="col-md-6 d-flex">
             <div class="card shadow-sm p-3 w-100">
-              <h5 class="mb-3 fw-semibold text-primary">Predicted User Growth</h5>
+              <h5 class="mb-3 fw-semibold text-primary">{% trans "Predicted User Growth" %}</h5>
               <canvas id="chartFutureUsers"></canvas>
             </div>
           </div>

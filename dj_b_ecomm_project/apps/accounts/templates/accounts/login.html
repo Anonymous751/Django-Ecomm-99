@@ -17,39 +17,77 @@
       <p class="text-muted small mb-0">{% trans "Welcome back! Please login to your account." %}</p>
     </div>
 
-    <form method="POST" class="mt-4" novalidate>
-      {% csrf_token %}
-      {% for field in form %}
-        <div class="mb-3">
-          {{ field.label_tag }}
-          {{ field|add_class:"form-control rounded-3 py-2 border-0 shadow-sm" }}
-          {% if field.errors %}
-            <div class="text-danger small mt-1">
-              {% for error in field.errors %}
-                <div>{{ error }}</div>
-              {% endfor %}
-            </div>
-          {% endif %}
+  <!-- START FORM -->
+<form method="POST" action="{% url 'accounts:login' %}" novalidate>
+  {% csrf_token %}
+
+  <!-- Global error -->
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  {% for field in form %}
+    <div class="mb-3 position-relative">
+
+      <!-- Render label -->
+      <label class="form-label fw-semibold">{{ field.label }}</label>
+
+      {% if field.field.widget.input_type == "password" %}
+        <!-- Password field with toggle -->
+        <div class="position-relative">
+          {{ field|add_class:"form-control rounded-3 py-2" }}
+          <span class="toggle-password position-absolute"
+                style="right:14px; top:50%; transform:translateY(-50%); cursor:pointer;">
+            <i class="fa fa-eye"></i>
+          </span>
         </div>
-      {% endfor %}
 
-      <div class="text-end mt-2 mb-2">
-        <a href="{% url 'accounts:forgot_password' %}" class="text-decoration-none fw-semibold" style="color: #0a415aff;">
-          {% trans "Forgot Password?" %}
-        </a>
-      </div>
+       
+      {% elif field.name == "captcha" %}
+        <!-- Captcha field -->
+        <div class="d-flex justify-content-center mt-2 mb-2">
+          {{ field }}
+        </div>
 
-      <button type="submit" class="btn w-100 py-2 rounded-3 d-flex align-items-center justify-content-center gap-2 login-btn">
-        <i class="bi bi-box-arrow-in-right"></i> {% trans "Login" %}
-      </button>
+      {% else %}
+        <!-- Normal input -->
+        {{ field|add_class:"form-control rounded-3 py-2" }}
+      {% endif %}
 
-      <p class="mt-3 text-center mb-1 text-muted">
-        {% trans "Don't have an account?" %}
-        <a href="{% url 'accounts:register' %}" class="text-decoration-none fw-semibold" style="color: #0a415aff;">
-          {% trans "Register" %}
-        </a>
-      </p>
-    </form>
+      <!-- Field errors -->
+      {% if field.errors %}
+        <div class="text-danger small mt-1">
+          {% for error in field.errors %}
+            <div>{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+
+  <!-- Forgot password -->
+  <div class="text-end mt-2 mb-2">
+    <a href="{% url 'accounts:forgot_password' %}" class="text-decoration-none fw-semibold" style="color: #0a415aff;">
+      {% trans "Forgot Password?" %}
+    </a>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn w-100 py-2 rounded-3 d-flex align-items-center justify-content-center gap-2 login-btn">
+    <i class="bi bi-box-arrow-in-right"></i> {% trans "Login" %}
+  </button>
+
+  <!-- Register link -->
+  <p class="mt-3 text-center mb-1 text-muted">
+    {% trans "Don't have an account?" %}
+    <a href="{% url 'accounts:register' %}" class="text-decoration-none fw-semibold" style="color: #0a415aff;">
+      {% trans "Register" %}
+    </a>
+  </p>
+</form>
+<!-- END FORM -->
+
 
     <div class="d-flex align-items-center my-3">
       <hr class="flex-grow-1">
@@ -57,24 +95,22 @@
       <hr class="flex-grow-1">
     </div>
 
-   <div class="text-center">
+    <div class="text-center">
+      <a href="{% provider_login_url 'google' %}"
+         class="btn social-btn google w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-google"></i>  {% trans "Login with Google" %}
+      </a>
 
-  <a href="{% provider_login_url 'google' %}"
-     class="btn social-btn google w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-      <i class="bi bi-google"></i>  {% trans "Login with Google" %}
-  </a>
+      <a href="{% provider_login_url 'github' %}"
+         class="btn social-btn github w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-github"></i> {% trans "Login with GitHub" %}
+      </a>
 
-  <a href="{% provider_login_url 'github' %}"
-     class="btn social-btn github w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-      <i class="bi bi-github"></i> {% trans "Login with GitHub" %}
-  </a>
-
-  <a href="{% url 'openid_connect_login' provider_id='linkedin' %}"
-     class="btn social-btn linkedin w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-      <i class="bi bi-linkedin"></i> {% trans "Login with LinkedIn" %}
-  </a>
-
-</div>
+      <a href="{% url 'openid_connect_login' provider_id='linkedin' %}"
+         class="btn social-btn linkedin w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-linkedin"></i> {% trans "Login with LinkedIn" %}
+      </a>
+    </div>
 
   </div>
 </div>
@@ -83,8 +119,19 @@
 {% block extra_css %}
 <!-- Custom Styles -->
 <style>
+
+.form-control {
+  border: 1px solid #d0d0d0 !important;
+  background-color: #ffffff !important;
+}
+
+.form-control:focus {
+  border-color:rgb(18, 50, 98) !important;
+  box-shadow: 0 0 5px rgba(13,110,253, .3) !important;
+}
+
   body {
-    background: linear-gradient(135deg, #e8f5e9 0%, #f3f3f3 100%);
+    {% comment %} background: linear-gradient(135deg,rgb(46, 100, 99) 0%, #f3f3f3 100%); {% endcomment %}
   }
 
   .card {
@@ -166,3 +213,21 @@
 }
 </style>
 {% endblock %}
+
+
+{% block extra_js %}
+<script>
+document.querySelectorAll(".toggle-password").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    let input = this.parentElement.querySelector("input");
+    if(input.type === "password"){
+      input.type = "text";
+      this.innerHTML = '<i class="fa fa-eye-slash"></i>';
+    } else {
+      input.type = "password";
+      this.innerHTML = '<i class="fa fa-eye"></i>';
+    }
+  });
+});
+</script>
+{% endblock  %}

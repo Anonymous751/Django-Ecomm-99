@@ -143,12 +143,16 @@ def checkout_view(request):
         'cart_items': items_with_total,
         'cart_total': cart_total
     })
-    
+
+from apps.shop.models import Product
+
+@login_required
 def stock_products_list_view(request):
-    # Group products by category
-    categories = {}
+    # Initialize categories with empty lists
+    # Get CATEGORY_CHOICES from Product model
+    categories = {display: [] for key, display in Product.CATEGORY_CHOICES}
     all_products = Product.objects.all().order_by('category', '-created_at')
-    
+
     for product in all_products:
         categories.setdefault(product.get_category_display(), []).append(product)  # type: ignore
 
@@ -180,14 +184,14 @@ def create_stock_product_view(request):
             messages.error(request, 'Failed to create product. Please check the form.')
     else:
         form = ProductForm()
-    
+
     context = {'form': form}
     return render(request, 'shop/create_product.html', context)
 
 
 def update_stock_product_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    
+
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
@@ -195,7 +199,7 @@ def update_stock_product_view(request, pk):
             return redirect('stock_products_list')  # Redirect to product list after saving
     else:
         form = ProductForm(instance=product)
-    
+
     context = {
         'product': product,
         'form': form,

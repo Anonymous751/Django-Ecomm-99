@@ -21,7 +21,7 @@
           <p class=" mb-0">{% trans "Explore all categories and discover amazing items." %}</p>
         </div>
         <div>
-          <a href="#" class="btn btn-primary fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#createProductModal">
+          <a href="#" class="btn create-product fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#createProductModal">
             <i class="bi bi-plus-circle me-1"></i> {% trans "Create Product" %}
           </a>
         </div>
@@ -34,7 +34,7 @@
           <div class="modal-content rounded-4 shadow">
             <div class="modal-header">
               <h5 class="modal-title">{% trans "Create New Product" %}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+              {% comment %} <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button> {% endcomment %}
             </div>
 
             <form method="POST" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-                <button type="submit" class="btn btn-primary">{% trans "Create Product" %}</button>
+                <button type="submit" class="create-product p-1 rounded ">{% trans "Create Product" %}</button>
               </div>
             </form>
           </div>
@@ -110,7 +110,7 @@
           {% empty %}
           <div class="col-12 text-center py-5">
             <img src="{% static 'images/empty-orders.png' %}" width="150" class="mb-3">
-            <h5 class="text-muted">{% trans "No products available in this category." %}</h5>
+            <h5 class="">{% trans "No products available in this category." %}</h5>
           </div>
           {% endfor %}
         </div>
@@ -131,13 +131,12 @@
   --card-hover-bg: #f0f0f0;
   --hover-shadow: 0 12px 20px rgba(0,0,0,0.1);
   --card-text-color: #1b1b1b;
-  --modal-close-color: #000000; /* light mode default */
+  --modal-close-color:rgb(255, 255, 255); /* light mode default */
 
   /* Buttons hover */
   --btn-primary-hover-bg: #0d6efd;
   --btn-primary-hover-text: #ffffff;
   --btn-warning-hover-bg: #ffc107;
-  --btn-warning-hover-text: #000000;
   --btn-danger-hover-bg: #dc3545;
   --btn-danger-hover-text: #ffffff;
 
@@ -149,6 +148,9 @@
   --select-bg: #ffffff;
   --select-text: #1b1b1b;
   --select-border: #ced4da;
+
+  --create-product-btn:rgb(14, 81, 109);
+  --create-product-btn-hover: #00c6ff;
 }
 
 /* Dark mode overrides */
@@ -162,7 +164,7 @@
   --btn-primary-hover-bg: #375a7f;
   --btn-primary-hover-text: #ffffff;
   --btn-warning-hover-bg: #e0a800;
-  --btn-warning-hover-text: #000000;
+
   --btn-danger-hover-bg: #a71d2a;
   --btn-danger-hover-text: #ffffff;
 
@@ -172,6 +174,9 @@
   --select-bg: #1b1f36;
   --select-text: #ffffff;
   --select-border: #2c3150;
+
+  --create-product-btn: #673ab7;
+  --create-product-btn-hover: #ffc107;
 }
 
 /* =================== GLOBAL BODY =================== */
@@ -179,8 +184,31 @@ body {
   background-color: var(--body-bg);
   color: var(--card-text-color);
   transition: background 0.3s ease, color 0.3s ease;
-  
+
 }
+
+.create-product {
+  background-color: var(--create-product-btn) ;
+  color:#ffffff;
+}
+.create-product:hover {
+  background-color: var(--create-product-btn-hover) ;
+  color:#ffffff;
+}
+
+/* Light mode: White X */
+.btn-close {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M2 2l12 12M14 2L2 14'/%3E%3C/svg%3E");
+}
+
+/* Dark mode: Black X */
+@media (prefers-color-scheme: dark) {
+    .btn-close {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='black' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M2 2l12 12M14 2L2 14'/%3E%3C/svg%3E");
+    }
+}
+
+
 
 /* =================== CARD =================== */
 .card {

@@ -46,7 +46,7 @@
                 {% endif %}
 
                 <div class="mt-2">
-                  <label class="btn btn-outline-primary btn-sm">
+                  <label class="btn change-photo btn-sm">
                     <i class="bi bi-upload me-1"></i> {% trans "Change Photo" %}
                     <input type="file" name="profile_image" class="d-none" accept="image/*">
                   </label>
@@ -185,10 +185,10 @@
                       <option value="{{ u.id }}">{{ u.username }}</option>
                     {% endfor %}
                   </select>
-                  <button type="submit" name="action" value="block" class="btn btn-outline-danger">
+                  <button type="submit" name="action" value="block" class="btn btn-outline-danger ms-3">
                     <i class="bi bi-lock"></i> {% trans "Block" %}
                   </button>
-                  <button type="submit" name="action" value="unblock" class="btn btn-outline-success">
+                  <button type="submit" name="action" value="unblock" class="btn btn-outline-success ms-3">
                     <i class="bi bi-unlock"></i> {% trans "Unblock" %}
                   </button>
                 </div>
@@ -263,6 +263,9 @@
   /* Body & text */
   --body-bg: #f4f9ff;
   --text-color: #0a3a4f;
+
+  --change-photo:rgb(35, 58, 184);
+  --change-photo-hover:rgb(42, 11, 152);
 
   --input-bg: #ffffff;
   --input-text: #0a3a4f;
@@ -344,6 +347,9 @@
   --modal-heading-text: #ffffff;
   --modal-x-filter: invert(1);
 
+  --change-photo:rgb(76, 19, 174);
+  --change-photo-hover: #ffd700;
+
   --gradient-text: linear-gradient(90deg, #ff8c00, #ff1a75, #673ab7);
 }
 
@@ -352,6 +358,15 @@ body {
   background-color: var(--body-bg);
   color: var(--text-color);
   transition: all 0.3s ease;
+}
+
+.change-photo {
+  background-color: var(--change-photo);
+  color:#ffffff;
+}
+.change-photo:hover {
+  background-color: var(--change-photo-hover);
+  color:#ffffff;
 }
 
 /* =================== SIDEBAR =================== */

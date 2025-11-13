@@ -161,8 +161,8 @@ canvas {
     <div class="col-12 col-md-9 col-lg-10">
       <div class="row mb-4 text-center">
         <div class="col-12">
-          <h2 class="fw-bold">Sales Report Dashboard</h2>
-          <p class="">📈 Traffic • 🧠 AI Predictions • 🔥 Top Sellers</p>
+          <h2 class="fw-bold">{% trans "Sales Report Dashboard" %}</h2>
+          <p class="">📈 {% trans "Traffic" %} • 🧠 {% trans "AI Predictions" %} • 🔥 {% trans "Top Sellers" %}</p>
           <hr style="width:60%;margin:0 auto;opacity:0.25;">
         </div>
       </div>
@@ -171,240 +171,240 @@ canvas {
       <div class="row g-3 mb-3">
         <div class="col-sm-6 col-md-3">
           <div class="kpi text-center">
-            <div class="muted-small">Total Revenue</div>
+            <div class="muted-small">{% trans "Total Revenue" %}</div>
             <h4 class="mt-2">₹ 1,24,500</h4>
-            <div class="muted-small">+12% vs last month</div>
+            <div class="muted-small">+12% {% trans "vs last month" %}</div>
           </div>
         </div>
         <div class="col-sm-6 col-md-3">
           <div class="kpi text-center">
-            <div class="muted-small">New Users</div>
+            <div class="muted-small">{% trans "New Users" %}</div>
             <h4 class="mt-2">4,220</h4>
-            <div class="muted-small">+8% vs last month</div>
+            <div class="muted-small">+8% {% trans "vs last month" %}</div>
           </div>
         </div>
+
+
         <div class="col-sm-6 col-md-3">
-          <div class="kpi text-center">
-            <div class="muted-small">Conversion Rate</div>
-            <h4 class="mt-2">2.8%</h4>
-            <div class="muted-small">Stable</div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="kpi text-center">
-            <div class="muted-small">Avg Order Value</div>
-            <h4 class="mt-2">₹ 1,890</h4>
-            <div class="muted-small">+3.5%</div>
-          </div>
-        </div>
+  <div class="kpi text-center">
+    <div class="muted-small">{% trans "New Users" %}</div>
+    <h4 class="mt-2">4,220</h4>
+    <div class="muted-small">+8% vs {% trans "last month" %}</div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-md-3">
+  <div class="kpi text-center">
+    <div class="muted-small">{% trans "Conversion Rate" %}</div>
+    <h4 class="mt-2">2.8%</h4>
+    <div class="muted-small">{% trans "Stable" %}</div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-md-3">
+  <div class="kpi text-center">
+    <div class="muted-small">{% trans "Avg Order Value" %}</div>
+    <h4 class="mt-2">₹ 1,890</h4>
+    <div class="muted-small">+3.5%</div>
+  </div>
+</div>
       </div>
 
-      <!-- 1) Charts row -->
-      <div class="row g-4 mb-4">
-        <div class="col-md-6 d-flex">
-          <div class="card shadow-sm p-3 w-100">
-            <h5 class="mb-3">User Traffic</h5>
-            <canvas id="chartTraffic"></canvas>
-            <p class="muted-small mt-2">Visitors over the last 7 months (hardcoded demo).</p>
-          </div>
-        </div>
+    <!-- 1) Charts row -->
+<div class="row g-4 mb-4">
+  <div class="col-md-6 d-flex">
+    <div class="card shadow-sm p-3 w-100">
+      <h5 class="mb-3">{% trans "User Traffic" %}</h5>
+      <canvas id="chartTraffic"></canvas>
+      <p class="muted-small mt-2">{% trans "Visitors over the last 7 months (hardcoded demo)." %}</p>
+    </div>
+  </div>
 
-        <div class="col-md-6 d-flex">
-          <div class="card shadow-sm p-3 w-100">
-            <h5 class="mb-3">AI Prediction (Next Month Sales)</h5>
-            <canvas id="chartAI"></canvas>
-            <p class="muted-small mt-2">Simple ML forecast sample (hardcoded).</p>
-          </div>
-        </div>
+  <div class="col-md-6 d-flex">
+    <div class="card shadow-sm p-3 w-100">
+      <h5 class="mb-3">{% trans "AI Prediction (Next Month Sales)" %}</h5>
+      <canvas id="chartAI"></canvas>
+      <p class="muted-small mt-2">{% trans "Simple ML forecast sample (hardcoded)." %}</p>
+    </div>
+  </div>
 
-        <div class="col-12 d-flex">
-          <div class="card shadow-sm p-3 w-100">
-            <h5 class="mb-3">Top 5 Selling Products</h5>
-            <canvas id="chartTopProducts"></canvas>
-            <p class="muted-small mt-2">Share of sales by top categories.</p>
-          </div>
-        </div>
-      </div>
+  <div class="col-12 d-flex">
+    <div class="card shadow-sm p-3 w-100">
+      <h5 class="mb-3">{% trans "Top 5 Selling Products" %}</h5>
+      <canvas id="chartTopProducts"></canvas>
+      <p class="muted-small mt-2">{% trans "Share of sales by top categories." %}</p>
+    </div>
+  </div>
+</div>
 
       <!-- 2) Top 5 Products table -->
       <div class="row mb-4">
         <div class="col-12">
           <div class="card shadow-sm p-0">
             <div class="p-3 border-bottom" style="background: linear-gradient(90deg,#f0fbff,#e6f7ff);">
-              <h5 class="mb-0">Top 5 Products</h5>
-              <p class="muted-small mb-0">Best selling items this period (hardcoded).</p>
-            </div>
+             <h5 class="mb-0">{% trans "Top 5 Products" %}</h5>
+<p class="muted-small mb-0">{% trans "Best selling items this period" %} ({% trans "hardcoded" %}).</p>
 
-            <div class="table-responsive p-3">
-              <table class="table table-analytics align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th style="width:60px">#</th>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Sold</th>
-                    <th>Total Revenue</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=64&q=60"
-                             class="rounded me-2" width="48" height="48" alt="Shoes">
-                        <div>
-                          <div class="fw-semibold">Running Shoes</div>
-                          <div class="muted-small">SKU: SH-001</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge-type">Footwear</span></td>
-                    <td>1,100</td>
-                    <td>₹ 2,75,000</td>
-                  </tr>
+<table class="table table-analytics align-middle mb-0">
+  <thead>
+    <tr>
+      <th style="width:60px">#</th>
+      <th>{% trans "Product" %}</th>
+      <th>{% trans "Category" %}</th>
+      <th>{% trans "Sold" %}</th>
+      <th>{% trans "Total Revenue" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img ... alt="{% trans "Shoes" %}">
+          <div>
+            <div class="fw-semibold">{% trans "Running Shoes" %}</div>
+            <div class="muted-small">SKU: SH-001</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge-type">{% trans "Footwear" %}</span></td>
+      <td>1,100</td>
+      <td>₹ 2,75,000</td>
+    </tr>
 
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=64&q=60"
-                             class="rounded me-2" width="48" height="48" alt="Phones">
-                        <div>
-                          <div class="fw-semibold">Smartphone X</div>
-                          <div class="muted-small">SKU: PH-204</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge-type">Electronics</span></td>
-                    <td>950</td>
-                    <td>₹ 4,56,000</td>
-                  </tr>
+    <tr>
+      <td>2</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img ... alt="{% trans "Phones" %}">
+          <div>
+            <div class="fw-semibold">{% trans "Smartphone X" %}</div>
+            <div class="muted-small">SKU: PH-204</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge-type">{% trans "Electronics" %}</span></td>
+      <td>950</td>
+      <td>₹ 4,56,000</td>
+    </tr>
 
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img src="https://images.unsplash.com/photo-1514995669114-7f8f3a1a3d54?auto=format&fit=crop&w=64&q=60"
-                             class="rounded me-2" width="48" height="48" alt="Jeans">
-                        <div>
-                          <div class="fw-semibold">Blue Jeans</div>
-                          <div class="muted-small">SKU: JE-330</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge-type">Apparel</span></td>
-                    <td>780</td>
-                    <td>₹ 1,56,000</td>
-                  </tr>
+    <tr>
+      <td>3</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img ... alt="{% trans "Jeans" %}">
+          <div>
+            <div class="fw-semibold">{% trans "Blue Jeans" %}</div>
+            <div class="muted-small">SKU: JE-330</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge-type">{% trans "Apparel" %}</span></td>
+      <td>780</td>
+      <td>₹ 1,56,000</td>
+    </tr>
 
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img src="https://images.unsplash.com/photo-1526178613535-2b6c3a5c2f9b?auto=format&fit=crop&w=64&q=60"
-                             class="rounded me-2" width="48" height="48" alt="Bags">
-                        <div>
-                          <div class="fw-semibold">Leather Bag</div>
-                          <div class="muted-small">SKU: BG-112</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge-type">Accessories</span></td>
-                    <td>650</td>
-                    <td>₹ 1,22,500</td>
-                  </tr>
+    <tr>
+      <td>4</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img ... alt="{% trans "Bags" %}">
+          <div>
+            <div class="fw-semibold">{% trans "Leather Bag" %}</div>
+            <div class="muted-small">SKU: BG-112</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge-type">{% trans "Accessories" %}</span></td>
+      <td>650</td>
+      <td>₹ 1,22,500</td>
+    </tr>
 
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <img src="https://images.unsplash.com/photo-1518441902118-0f9f1a3c3b0b?auto=format&fit=crop&w=64&q=60"
-                             class="rounded me-2" width="48" height="48" alt="Headphones">
-                        <div>
-                          <div class="fw-semibold">Wireless Headphones</div>
-                          <div class="muted-small">SKU: HP-501</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge-type">Electronics</span></td>
-                    <td>580</td>
-                    <td>₹ 2,03,000</td>
-                  </tr>
+    <tr>
+      <td>5</td>
+      <td>
+        <div class="d-flex align-items-center">
+          <img ... alt="{% trans "Headphones" %}">
+          <div>
+            <div class="fw-semibold">{% trans "Wireless Headphones" %}</div>
+            <div class="muted-small">SKU: HP-501</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge-type">{% trans "Electronics" %}</span></td>
+      <td>580</td>
+      <td>₹ 2,03,000</td>
+    </tr>
 
-                </tbody>
-              </table>
+  </tbody>
+</table>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 3) Monthly Sales table -->
-      <div class="row mb-4">
-        <div class="col-12">
-          <div class="card shadow-sm p-0">
-            <div class="p-3 border-bottom" style="background: linear-gradient(90deg,#f0fbff,#e6f7ff);">
-              <h5 class="mb-0">Monthly Sales</h5>
-              <p class="muted-small mb-0">Orders & revenue by month (hardcoded).</p>
-            </div>
-
-            <div class="table-responsive p-3">
-              <table class="table table-analytics align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th>Month</th>
-                    <th>Orders</th>
-                    <th>Revenue</th>
-                    <th>Conversion %</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>January</td><td>4,200</td><td>₹ 4,20,000</td><td>2.6%</td></tr>
-                  <tr><td>February</td><td>4,100</td><td>₹ 4,05,000</td><td>2.5%</td></tr>
-                  <tr><td>March</td><td>5,000</td><td>₹ 5,50,000</td><td>3.0%</td></tr>
-                  <tr><td>April</td><td>5,400</td><td>₹ 5,95,000</td><td>3.1%</td></tr>
-                  <tr><td>May</td><td>6,200</td><td>₹ 6,80,000</td><td>3.4%</td></tr>
-                  <tr><td>June</td><td>6,500</td><td>₹ 7,10,000</td><td>3.6%</td></tr>
-                  <tr><td>July</td><td>7,100</td><td>₹ 8,05,000</td><td>3.9%</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+     <!-- 3) Monthly Sales table -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card shadow-sm p-0">
+      <div class="p-3 border-bottom" style="background: linear-gradient(90deg,#f0fbff,#e6f7ff);">
+        <h5 class="mb-0">{% trans "Monthly Sales" %}</h5>
+        <p class="muted-small mb-0">{% trans "Orders & revenue by month (hardcoded)." %}</p>
       </div>
 
-      <!-- 4) Product Performance table -->
-      <div class="row mb-5">
-        <div class="col-12">
-          <div class="card shadow-sm p-0">
-            <div class="p-3 border-bottom" style="background: linear-gradient(90deg,#f0fbff,#e6f7ff);">
-              <h5 class="mb-0">Product Performance</h5>
-              <p class="muted-small mb-0">Stock & revenue performance (hardcoded).</p>
-            </div>
+      <div class="table-responsive p-3">
+        <table class="table table-analytics align-middle mb-0">
+          <thead>
+            <tr>
+              <th>{% trans "Month" %}</th>
+              <th>{% trans "Orders" %}</th>
+              <th>{% trans "Revenue" %}</th>
+              <th>{% trans "Conversion %" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>{% trans "January" %}</td><td>4,200</td><td>₹ 4,20,000</td><td>2.6%</td></tr>
+            <tr><td>{% trans "February" %}</td><td>4,100</td><td>₹ 4,05,000</td><td>2.5%</td></tr>
+            <tr><td>{% trans "March" %}</td><td>5,000</td><td>₹ 5,50,000</td><td>3.0%</td></tr>
+            <tr><td>{% trans "April" %}</td><td>5,400</td><td>₹ 5,95,000</td><td>3.1%</td></tr>
+            <tr><td>{% trans "May" %}</td><td>6,200</td><td>₹ 6,80,000</td><td>3.4%</td></tr>
+            <tr><td>{% trans "June" %}</td><td>6,500</td><td>₹ 7,10,000</td><td>3.6%</td></tr>
+            <tr><td>{% trans "July" %}</td><td>7,100</td><td>₹ 8,05,000</td><td>3.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <div class="table-responsive p-3">
-              <table class="table table-analytics align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Brand</th>
-                    <th>Stock Left</th>
-                    <th>Total Revenue</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Running Shoes</td><td>Stride</td><td>120</td><td>₹ 2,75,000</td></tr>
-                  <tr><td>Smartphone X</td><td>Nova</td><td>45</td><td>₹ 4,56,000</td></tr>
-                  <tr><td>Blue Jeans</td><td>DenimCo</td><td>220</td><td>₹ 1,56,000</td></tr>
-                  <tr><td>Leather Bag</td><td>CarryAll</td><td>80</td><td>₹ 1,22,500</td></tr>
-                  <tr><td>Wireless Headphones</td><td>Soundify</td><td>60</td><td>₹ 2,03,000</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+<!-- 4) Product Performance table -->
+<div class="row mb-5">
+  <div class="col-12">
+    <div class="card shadow-sm p-0">
+      <div class="p-3 border-bottom" style="background: linear-gradient(90deg,#f0fbff,#e6f7ff);">
+        <h5 class="mb-0">{% trans "Product Performance" %}</h5>
+        <p class="muted-small mb-0">{% trans "Stock & revenue performance (hardcoded)." %}</p>
       </div>
 
+      <div class="table-responsive p-3">
+        <table class="table table-analytics align-middle mb-0">
+          <thead>
+            <tr>
+              <th>{% trans "Product" %}</th>
+              <th>{% trans "Brand" %}</th>
+              <th>{% trans "Stock Left" %}</th>
+              <th>{% trans "Total Revenue" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>{% trans "Running Shoes" %}</td><td>{% trans "Stride" %}</td><td>120</td><td>₹ 2,75,000</td></tr>
+            <tr><td>{% trans "Smartphone X" %}</td><td>{% trans "Nova" %}</td><td>45</td><td>₹ 4,56,000</td></tr>
+            <tr><td>{% trans "Blue Jeans" %}</td><td>{% trans "DenimCo" %}</td><td>220</td><td>₹ 1,56,000</td></tr>
+            <tr><td>{% trans "Leather Bag" %}</td><td>{% trans "CarryAll" %}</td><td>80</td><td>₹ 1,22,500</td></tr>
+            <tr><td>{% trans "Wireless Headphones" %}</td><td>{% trans "Soundify" %}</td><td>60</td><td>₹ 2,03,000</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

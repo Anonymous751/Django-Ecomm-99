@@ -81,8 +81,8 @@ h2.fw-bold {
 
       <div class="row mb-4 text-center">
         <div class="col-12">
-          <h2 class="fw-bold">Advanced Analytics Dashboard</h2>
-          <p class="">🚀 Hardcoded Demo Charts</p>
+          <h2 class="fw-bold">{% trans "Advanced Analytics Dashboard" %}</h2>
+          <p class="">🚀 {% trans "Hardcoded Demo Charts" %}</p>
           <hr style="width:60%;margin:0 auto;opacity:0.3;">
         </div>
       </div>
@@ -91,21 +91,21 @@ h2.fw-bold {
 
         <div class="col-md-6 d-flex">
           <div class="card shadow-sm p-3 w-100 text-center">
-            <h5 class="mb-3">Monthly Revenue</h5>
+            <h5 class="mb-3">{% trans "Monthly Revenue" %}</h5>
             <canvas id="chartRevenue"></canvas>
           </div>
         </div>
 
         <div class="col-md-6 d-flex">
           <div class="card shadow-sm p-3 w-100 text-center">
-            <h5 class="mb-3">User Registrations</h5>
+            <h5 class="mb-3">{% trans "User Registrations" %}</h5>
             <canvas id="chartUsers"></canvas>
           </div>
         </div>
 
         <div class="col-md-6 d-flex mx-auto">
           <div class="card shadow-sm p-3 w-100 text-center">
-            <h5 class="mb-3">Product Category Share</h5>
+            <h5 class="mb-3">{% trans "Product Category Share" %}</h5>
             <canvas id="chartPie"></canvas>
           </div>
         </div>
@@ -116,6 +116,7 @@ h2.fw-bold {
 
   </div>
 </div>
+
 {% endblock %}
 
 {% block extra_css %}
@@ -133,10 +134,10 @@ new Chart(document.getElementById("chartRevenue"), {
   type: "line",
   data: {
     labels,
-    datasets: [{ 
-      label:"Revenue", 
+    datasets: [{
+      label:"Revenue",
       data: [1200,1500,1800,2400,1900,3100,4000],
-      borderWidth: 2 
+      borderWidth: 2
     }]
   }
 });
@@ -145,10 +146,10 @@ new Chart(document.getElementById("chartUsers"), {
   type: "bar",
   data: {
     labels,
-    datasets: [{ 
-      label:"Users Registered", 
+    datasets: [{
+      label:"Users Registered",
       data: [10,22,18,30,26,42,51],
-      borderWidth: 1 
+      borderWidth: 1
     }]
   }
 });

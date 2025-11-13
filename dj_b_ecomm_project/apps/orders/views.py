@@ -16,7 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-
+@login_required
 def my_orders_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -47,7 +47,7 @@ def my_orders_view(request):
 
 
 
-
+@login_required
 def place_order_view(request):
     if not request.user.is_authenticated:
         return redirect('login')  # normal redirect for unauthenticated users
@@ -89,7 +89,8 @@ def place_order_view(request):
         'cart_total': cart_total,
         'cart_count': cart_items.count(),
     })
-    
+
+@login_required
 @csrf_exempt
 def update_order_status(request, order_id):
     """AJAX: update order status"""
@@ -106,7 +107,8 @@ def update_order_status(request, order_id):
         except Exception as e:
             return JsonResponse({"success": False, "error": str(e)})
     return JsonResponse({"success": False, "error": "Invalid request"})
-    
+
+@login_required
 def update_ordered_product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
@@ -135,7 +137,8 @@ def update_ordered_product_view(request, product_id):
 
     return render(request, 'orders/update_ordered_product.html', {'form': form, 'product': product})
 
-    
+
+@login_required
 def delete_order(request, order_id):
     if request.method == "POST":
         order = get_object_or_404(Order, id=order_id)
@@ -145,6 +148,7 @@ def delete_order(request, order_id):
 
 
 
+@login_required
 def order_products_view(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     products = []

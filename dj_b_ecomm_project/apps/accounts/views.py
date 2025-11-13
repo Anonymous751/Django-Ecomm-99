@@ -23,18 +23,55 @@ from django.urls import reverse
 
 from django.core.mail import EmailMultiAlternatives
 
+# --------------------------------------------
+# Registration View with reCAPTCHA
+# --------------------------------------------
+from django_recaptcha.fields import ReCaptchaField
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
 def register_view(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST, request.FILES)
+
+        # ----------------------------
+        # Validate reCAPTCHA first
+        # ----------------------------
+        captcha_response = request.POST.get('g-recaptcha-response')
+        if not captcha_response:
+            messages.error(request, "⚠️ Please complete the reCAPTCHA.")
+            return render(request, 'accounts/register.html', {'form': form})
+
+        try:
+            # Validate captcha
+            ReCaptchaField().clean(captcha_response)
+        except ValidationError:
+            messages.error(request, "❌ Invalid reCAPTCHA. Please try again.")
+            return render(request, 'accounts/register.html', {'form': form})
+
+        # ----------------------------
+        # Existing registration logic
+        # ----------------------------
         if form.is_valid():
             user = form.save()   # don't save yet  commit=False
-            # user.is_active = False           # <-- important
-            user.save()        
+            # user.is_active = False   # <-- optional, keep if using email verification
+            user.save()
             messages.success(request, "Account created successfully! Please login.")
             return redirect('accounts:login')
+
+        else:
+            # If form is invalid, show errors
+            messages.error(request, "⚠️ Please correct the errors below.")
+            return render(request, 'accounts/register.html', {'form': form})
+
+    # ----------------------------
+    # Handle GET requests
+    # ----------------------------
     else:
         form = UserRegistrationForm()
-    return render(request, 'accounts/register.html', {'form': form})
+        return render(request, 'accounts/register.html', {'form': form})
+
 
 
 from django.contrib.auth import get_user_model
@@ -93,8 +130,8 @@ def admin_settings_view(request):
         # Update analytics level
         analytics_level = request.POST.get("analytics_level", "Basic")
         request.user.analytics_level = analytics_level
-        
-        
+
+
         # Profile updates
         if "first_name" in request.POST:
             user.first_name = request.POST.get("first_name")
@@ -208,11 +245,33 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 # --------------------------------------------
-# Login View (with 2FA)
+# Login View (with 2FA + reCAPTCHA)
 # --------------------------------------------
+from django_recaptcha.fields import ReCaptchaField
+from django.core.exceptions import ValidationError
+
 def login_view(request):
     if request.method == 'POST':
         form = UserLoginForm(request, data=request.POST)
+
+        # ----------------------------
+        # Validate reCAPTCHA first
+        # ----------------------------
+        captcha_response = request.POST.get('g-recaptcha-response')
+        if not captcha_response:
+            messages.error(request, "⚠️ Please complete the reCAPTCHA.")
+            return render(request, "accounts/login.html", {"form": form})
+
+        try:
+            # Validate captcha
+            ReCaptchaField().clean(captcha_response)
+        except ValidationError:
+            messages.error(request, "❌ Invalid reCAPTCHA. Please try again.")
+            return render(request, "accounts/login.html", {"form": form})
+
+        # ----------------------------
+        # Existing login logic
+        # ----------------------------
         if form.is_valid():
             print("username")
             email = form.cleaned_data.get('username')
@@ -262,6 +321,7 @@ def login_view(request):
     else:
         form = UserLoginForm()
         return render(request, "accounts/login.html", {"form": form})
+
 # --------------------------------------------
 # Verify OTP View
 # --------------------------------------------
@@ -333,8 +393,8 @@ def update_privacy_security(request):
 
         user.save()
         return redirect('accounts:admin_settings')
-    
-    
+
+
 # reset password ?
 
 from datetime import datetime, timedelta
@@ -392,10 +452,10 @@ def verify_reset_otp_view(request):
             # OTP verified
             request.session["otp_verified"] = True
             messages.success(request, "✅ OTP verified successfully.")
-            return redirect("reset_password")
+            return redirect("accounts:reset_password")
         else:
             messages.error(request, "⚠️ Invalid or expired OTP.")
-            return redirect("verify_reset_otp")
+            return redirect("accounts:verify_reset_otp")
 
     return render(request, "accounts/verify_reset_otp.html")
 
@@ -428,58 +488,58 @@ def reset_password_view(request):
             request.session.pop("otp_verified", None)
 
             messages.success(request, "🎉 Password reset successful! Please login.")
-            return redirect("login")
+            return redirect("accounts:login")
 
     return render(request, "accounts/reset_password.html")
 
 
 
 
-# def send_verification_email(request, user):
-#     token = default_token_generator.make_token(user)
-#     uid = urlsafe_base64_encode(force_bytes(user.pk))
-#     verify_url = request.build_absolute_uri(
-#         reverse('activate', kwargs={'uidb64': uid, 'token': token})
-#     )
+def send_verification_email(request, user):
+    token = default_token_generator.make_token(user)
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    verify_url = request.build_absolute_uri(
+        reverse('activate', kwargs={'uidb64': uid, 'token': token})
+    )
 
-#     subject = 'Verify your ShopEase account'
-#     context = {
-#         'user': user,
-#         'verify_url': verify_url,
-#         'site_name': 'ShopEase',
-#     }
+    subject = 'Verify your ShopEase account'
+    context = {
+        'user': user,
+        'verify_url': verify_url,
+        'site_name': 'ShopEase',
+    }
 
-#     message_html = render_to_string('emails/verify_email.html', context)
-#     message_plain = render_to_string('emails/verify_email.txt', context)
+    message_html = render_to_string('emails/verify_email.html', context)
+    message_plain = render_to_string('emails/verify_email.txt', context)
 
-#     # === FIX IS HERE ===
-#     email = EmailMultiAlternatives(
-#         subject,
-#         message_plain,
-#         settings.DEFAULT_FROM_EMAIL,
-#         [user.email],
-#     )
+    # === FIX IS HERE ===
+    email = EmailMultiAlternatives(
+        subject,
+        message_plain,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+    )
 
-#     email.attach_alternative(message_html, "text/html")
-#     email.send(fail_silently=False)
+    email.attach_alternative(message_html, "text/html")
+    email.send(fail_silently=False)
 
 
-# def activate_account(request, uidb64, token):
-#     try:
-#         uid = force_str(urlsafe_base64_decode(uidb64))
-#         user = User.objects.get(pk=uid)
-#     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-#         user = None
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
 
-#     if user is not None and default_token_generator.check_token(user, token):
-#         # Activate user account (customize per your model)
-#         user.is_active = True
-#         user.save()
-#         messages.success(request, "Your account has been verified. You can log in now.")
-#         return redirect('accounts:login')  # adjust to your login URL name
-#     else:
-#         messages.error(request, "The verification link is invalid or expired.")
-#         return redirect('home')
+    if user is not None and default_token_generator.check_token(user, token):
+        # Activate user account (customize per your model)
+        user.is_active = True
+        user.save()
+        messages.success(request, "Your account has been verified. You can log in now.")
+        return redirect('accounts:login')  # adjust to your login URL name
+    else:
+        messages.error(request, "The verification link is invalid or expired.")
+        return redirect('home')
 
 
 @login_required
@@ -501,7 +561,7 @@ def ai_predictions(request):
 
 
 
-# Theme View 
+# Theme View
 @login_required
 def toggle_dark_mode(request):
     request.user.dark_mode = not request.user.dark_mode

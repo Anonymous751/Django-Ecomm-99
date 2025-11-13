@@ -9,6 +9,12 @@ from django.contrib.auth.models import User
 from apps.accounts.models import CustomUser
 from django.utils.translation import gettext_lazy as _
 
+from django.conf import settings
+from django_recaptcha.fields import ReCaptchaField
+from django.utils.translation import get_language
+from django_recaptcha.widgets import ReCaptchaV2Checkbox
+
+
 # -------------------------------------------------
 # User Registration Form
 # -------------------------------------------------
@@ -31,9 +37,16 @@ class UserRegistrationForm(UserCreationForm):
         help_text=_("Optional: Upload a profile image.")
     )
 
+     # dynamically set ReCaptcha language
+    captcha = ReCaptchaField(
+        label=_("Captcha"),  # <-- translated label
+        widget=ReCaptchaV2Checkbox(attrs={'data-lang': get_language()}),
+        error_messages={'required': _('Please verify that you are not a robot.')}
+    )
+
     class Meta:
         model = CustomUser
-        fields = ["username", "email", "password1", "password2", "profile_image"]
+        fields = ["username", "email", "password1", "password2", "profile_image", "captcha"]
         labels = {
             "username": _("Username"),
             "email": _("Email"),
@@ -86,4 +99,9 @@ class UserLoginForm(AuthenticationForm):
     password = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput()
+    )
+    captcha = ReCaptchaField(
+        label=_("Captcha"),  # <-- translated label
+        widget=ReCaptchaV2Checkbox(attrs={'data-lang': get_language()}),
+        error_messages={'required': _('Please verify that you are not a robot.')}
     )

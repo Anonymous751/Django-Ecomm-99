@@ -22,21 +22,28 @@
   --social-hover-text: #083a4f;
   --footer-bottom-bg: #072f40;
   --footer-bottom-text: #cbd5e1;
-  --footer-font-family: "Poppins", sans-serif;
+
+  --tooltip-bg: #083a4f;
+  --tooltip-color: #ffffff;
+  --tooltip-font-size: 0.875rem; /* 14px */
+  --tooltip-padding: 0.4rem 0.6rem;
 }
 
 /* Dark mode overrides */
 [data-theme="dark"] {
   --footer-bg: #111a2e;
   --footer-text: #e9eef7;
-  --footer-heading: #92fe9d;
+  --footer-heading:  #ffc107;
   --footer-link: #cfd8dc;
-  --footer-link-hover: #92fe9d;
+  --footer-link-hover:  #ffc107;
   --social-bg: #1b2a40;
-  --social-hover-bg: #92fe9d;
+  --social-hover-bg:  #ffc107;
   --social-hover-text: #0b1527;
   --footer-bottom-bg: #0b1527;
   --footer-bottom-text: #b0bec5;
+
+  --tooltip-bg: #ffc107;
+  --tooltip-color: #000000;
 }
 
 /* =================== FOOTER STYLES =================== */
@@ -142,6 +149,43 @@ footer a:hover {
   transform: translateY(-3px);
 }
 
+@media (max-width: 992px) { /* tablets */
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) { /* mobile */
+  .social-icons a {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Apply dynamic tooltip colors */
+.social-tooltip .tooltip-inner {
+  background-color: var(--tooltip-bg) !important;
+  color: var(--tooltip-color) !important;
+  font-size: var(--tooltip-font-size) !important;
+  padding: var(--tooltip-padding) !important;
+  text-align: center;
+}
+
+.social-tooltip .tooltip-arrow::before {
+  background-color: var(--tooltip-bg) !important;
+}
+
+/* --------------------- Responsive tweaks --------------------- */
+@media (max-width: 576px) {
+  .social-tooltip .tooltip-inner {
+    font-size: 0.75rem !important; /* smaller text on mobile */
+    padding: 0.3rem 0.5rem !important;
+  }
+}
+
     </style>
   </head>
 
@@ -157,22 +201,61 @@ footer a:hover {
           </div>
 
           <div class="col-md-4 mb-4">
-            <h6>{% trans "Useful Links" %}</h6>
-            <p><a href="#">{% trans "Home" %}</a></p>
-            <p><a href="#">{% trans "Products" %}</a></p>
-            <p><a href="#">{% trans "Cart" %}</a></p>
-            <p><a href="#">{% trans "Profile" %}</a></p>
-          </div>
+    <h6>{% trans "Useful Links" %}</h6>
+    <p><a href="{% url 'home' %}">{% trans "Home" %}</a></p>
+    <p><a href="{% url 'stock_products_list' %}">{% trans "Products" %}</a></p>
+    <p><a href="{% url 'my_orders' %}">{% trans "Orders" %}</a></p>
+
+    {% if request.user.is_authenticated %}
+        <p><a href="{% url 'accounts:profile' username=request.user.username %}">{% trans "Profile" %}</a></p>
+    {% else %}
+        <p><a href="{% url 'accounts:login' %}">{% trans "Login" %}</a></p>
+    {% endif %}
+</div>
+
 
           <div class="col-md-4 mb-4">
-            <h6>{% trans "Follow Us" %}</h6>
-            <div class="social-icons d-flex">
-              <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-              <a href="https://x.com/i/flow/login"><i class="fab fa-twitter"></i></a>
-              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-              <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-              <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-            </div>
+    <h6>{% trans "Follow Us" %}</h6>
+    <div class="social-icons d-flex gap-3">
+        <a href="https://www.facebook.com/"
+           data-bs-toggle="tooltip"
+           title="Facebook"
+           data-bs-placement="bottom"
+           class="social-tooltip">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/i/flow/login"
+           data-bs-toggle="tooltip"
+           title="Twitter"
+           data-bs-placement="bottom"
+           class="social-tooltip">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/"
+           data-bs-toggle="tooltip"
+           title="Instagram"
+           data-bs-placement="bottom"
+           class="social-tooltip">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/"
+           data-bs-toggle="tooltip"
+           title="LinkedIn"
+           data-bs-placement="bottom"
+           class="social-tooltip">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.youtube.com/"
+           data-bs-toggle="tooltip"
+           title="YouTube"
+           data-bs-placement="bottom"
+           class="social-tooltip">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
+
+
           </div>
         </div>
       </div>
@@ -183,3 +266,17 @@ footer a:hover {
     </footer>
   </body>
 </html>
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            trigger: 'hover focus touch', // works on hover and touch (mobile)
+            boundary: 'viewport',         // ensures tooltip stays in viewport
+        });
+    });
+});
+</script>
+{% endblock  %}

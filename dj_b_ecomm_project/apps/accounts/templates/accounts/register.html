@@ -23,11 +23,30 @@
       </div>
     {% endif %}
 
-    <!-- 🧾 Field-wise form rendering -->
     {% for field in form %}
-      <div class="mb-3">
+      <div class="mb-3 position-relative">
+
         <label class="form-label fw-semibold">{{ field.label }}</label>
-        {{ field|add_class:"form-control border-0 shadow-sm rounded-3 py-2" }}
+
+        {% if field.name == "password" or field.name == "password1" or field.name == "password2" or field.name == "confirm_password" %}
+          <div class="position-relative">
+            {{ field|add_class:"form-control rounded-3 py-2 px-3 border border-300 password-field" }}
+            <span class="toggle-password position-absolute top-50 end-0 translate-middle-y me-3" style="cursor:pointer;font-size:14px;">
+              <i class="fa fa-eye-slash"></i>
+            </span>
+          </div>
+
+        {% elif field.name == "captcha" %}
+          <!-- Bootstrap wrapper for reCAPTCHA -->
+          <div class="mt-3 mb-3 d-flex justify-content-center">
+            {{ field }}
+            {{ form.captcha.errors }}
+          </div>
+
+        {% else %}
+          {{ field|add_class:"form-control rounded-3 py-2 px-3 border border-300" }}
+        {% endif %}
+
         {% if field.errors %}
           <div class="text-danger small mt-1">
             {% for error in field.errors %}
@@ -35,38 +54,43 @@
             {% endfor %}
           </div>
         {% endif %}
+
       </div>
     {% endfor %}
 
-    <button type="submit" 
-      class="btn w-100 stylish-btn py-2 fw-semibold rounded-3">
+    <button type="submit" class="btn w-100 stylish-btn py-2 fw-semibold rounded-3">
       <i class="bi bi-person-plus me-2"></i> {% trans "Register" %}
     </button>
 
     <p class="mt-3 text-center mb-0">
       {% trans "Already have an account?" %}
-      <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-semibold text-primary">
+      <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-semibold" style="color: #0a415aff;">
         {% trans "Login" %}
       </a>
     </p>
+</form>
 
-  </form>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+
+.form-control:focus {
+  border-color:rgb(18, 50, 98) !important;
+  box-shadow: 0 0 5px rgba(13,110,253, .3) !important;
+}
+
   .stylish-btn {
-    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    background: linear-gradient(135deg, #0a415aff, #5FAFA8);
     color: #fff;
-    border: none;
+    font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+    border: none;
   }
   .stylish-btn:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #5f65d6, #a0a5ff);
-    box-shadow: 0 6px 16px rgba(78, 84, 200, 0.4);
+   background: linear-gradient(135deg, #5FAFA8, #83C5BE);
+   transform: scale(1.02);
   }
   .form-control:focus {
     box-shadow: 0 0 0 0.2rem rgba(78, 84, 200, 0.25);
@@ -74,3 +98,27 @@
   }
 </style>
 {% endblock %}
+
+
+{% block extra_js %}
+<script>
+document.addEventListener('click', function(e){
+  let btn = e.target.closest('.toggle-password');
+  if(btn){
+    let icon = btn.querySelector('i');
+    let input = btn.previousElementSibling; // THIS IS MAIN FIX
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    }
+  }
+});
+</script>
+
+{% endblock  %}

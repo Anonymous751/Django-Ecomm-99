@@ -23,10 +23,10 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       />
-   
+
 
       <!-- Google Font -->
-     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
       <!-- Swiper CSS -->
       <link
@@ -34,10 +34,14 @@
         href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
       />
 
-     
+      {% comment %} Recaptcha link {% endcomment %}
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+       <!-- Google ReCaptcha (dynamic language) -->
+      <script src="https://www.google.com/recaptcha/api.js?hl={{ LANGUAGE_CODE }}" async defer></script>
+
       <style>
   body {
-    font-family: "Momo Trust Display", sans-serif;
+    font-family: "Bitter", serif;
     background-color: var(--body-bg);
     color: var(--body-text-color);
     transition: background 0.3s, color 0.3s;
@@ -92,6 +96,14 @@
     color: var(--btn-danger-hover-text);
     border-color: var(--btn-danger-hover-bg);
   }
+
+/* Remove extra margin and control padding for messages */
+.alert-custom {
+  margin: 0 !important;           /* remove all margins */
+  padding: 0.5rem 1rem;           /* adjust padding as needed */
+  font-size: 0.95rem;              /* optional, for consistency with form inputs */
+}
+
 </style>
 
 
@@ -106,7 +118,7 @@
         <div class="message-container">
           {% for message in messages %}
             <div
-              class="alert alert-dismissible fade show shadow-sm rounded-3 px-4 py-3 text-center
+              class="alert alert-dismissible fade show shadow-sm rounded-3 px-4 text-center alert-custom
                 {% if message.tags == 'error' %}alert-danger
                 {% elif message.tags == 'warning' %}alert-warning
                 {% elif message.tags == 'success' %}alert-success

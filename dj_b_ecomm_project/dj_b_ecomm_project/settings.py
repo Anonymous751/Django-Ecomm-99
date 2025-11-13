@@ -12,12 +12,13 @@ SECRET_KEY = 'django-insecure-z#emb=ibo*4%*ofql$6k6-&)9zudvbv1jye+xk1c@%x3e265rx
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_recaptcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,6 +94,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'apps.shop.context_processors.cart_context',
                 'django.template.context_processors.request',
+                'django.template.context_processors.i18n',
 
             ],
         },
@@ -187,6 +189,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -205,6 +208,15 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('GMAIL_ADDRESS')         # e.g. 'youremail@gmail.com'
 EMAIL_HOST_PASSWORD = config('GMAIL_APP_PASSWORD')# the 16-char App Password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# reCAPTCHA keys
+RECAPTCHA_SITE_KEY = config('RECAPTCHA_SITE_KEY')
+RECAPTCHA_SECRET_KEY = config('RECAPTCHA_SECRET_KEY')
+
+# If you are just testing locally and want to ignore this warning, add this in settings.py:
+
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
 
 
 SITE_URL = "http://127.0.0.1:8000"

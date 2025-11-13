@@ -6,24 +6,37 @@ from apps.cart.models import CartItem
 
 
 def home_view(request):
-    selected_category = request.GET.get('category')
+    # Separate selected categories for each section
+    featured_category = request.GET.get('featured_category')
+    trending_category = request.GET.get('trending_category')
+    newcomers_category = request.GET.get('newcomers_category')
+
     search_query = request.GET.get('search')
 
     # Start with all products
     products = Product.objects.all()
 
-    # Filter by category
-    if selected_category:
-        products = products.filter(category=selected_category)
-
-    # Filter by search query
+    # Featured Products filter
+    featured_products = Product.objects.filter(is_featured=True)
+    if featured_category:
+        featured_products = featured_products.filter(category=featured_category)
     if search_query:
-        products = products.filter(name__icontains=search_query)
+        featured_products = featured_products.filter(name__icontains=search_query)
 
-    # Group products for sliders
-    featured_products = products.filter(is_featured=True)
-    trending_products = products.filter(is_trending=True)
-    new_comers = products.order_by('-created_at')[:10]
+    # Trending Products filter
+    trending_products = Product.objects.filter(is_trending=True)
+    if trending_category:
+        trending_products = trending_products.filter(category=trending_category)
+    if search_query:
+        trending_products = trending_products.filter(name__icontains=search_query)
+        
+    # New Comers filter
+    new_comers = Product.objects.all()
+    if newcomers_category:
+        new_comers = new_comers.filter(category=newcomers_category)
+    if search_query:
+        new_comers = new_comers.filter(name__icontains=search_query)
+    new_comers = new_comers.order_by('-created_at')[:10]
 
     # Cart info
     if request.user.is_authenticated:
@@ -39,16 +52,19 @@ def home_view(request):
         'featured_products': featured_products,
         'trending_products': trending_products,
         'new_comers': new_comers,
-        'selected_category': selected_category,
+        'featured_category': featured_category,
+        'trending_category': trending_category,
+        'newcomers_category': newcomers_category,
         'search_query': search_query,
-        'products': products,  # ✅ fixed
-        'Product': Product,    # for CATEGORY_CHOICES if needed
+        'Product': Product,  # for CATEGORY_CHOICES
         'cart_items': cart_items,
         'cart_total': cart_total,
         'cart_count': cart_count,
     }
 
     return render(request, 'home.html', context)
+
+
 
 
 def about_view(request):
